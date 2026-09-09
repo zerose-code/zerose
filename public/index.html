@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ZEROSE - High-Performance AI Automation & Business Solutions">
+  <title>ZEROSE | Enterprise AI Automation & Business Acceleration</title>
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Background Animated Canvas -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="dynamic-brand">
+        <svg class="zerose-logo-svg" viewBox="0 0 100 100">
+          <defs>
+            <linearGradient id="zGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00f5d4" />
+              <stop offset="100%" stop-color="#00a896" />
+            </linearGradient>
+            <filter id="glowNav"><feGaussianBlur stdDeviation="3.5" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+          </defs>
+          <circle class="svg-ring-outer" cx="50" cy="50" r="44" />
+          <circle class="svg-ring-inner" cx="50" cy="50" r="36" />
+          <path class="svg-z-shape" filter="url(#glowNav)" stroke="url(#zGradNav)" d="M 28 32 L 70 32 L 32 68 L 62 68 L 74 54 M 60 68 L 76 68 L 76 52" />
+          <circle class="svg-node" cx="70" cy="32" r="3" />
+        </svg>
+        <div class="brand-text">
+          <span class="logo-name">ZEROSE</span>
+          <span class="logo-sub">INNOVATE | DEVELOP | GROW</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">GitHub Repos</a></li>
+        <li><a href="#security">Security & Compliance</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-btn" title="Toggle Light/Dark Theme"><i class="fas fa-moon"></i></button>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-content float-anim">
+    
+    <!-- 1. Top Logo Block -->
+    <div class="hero-logo-wrapper">
+      <svg class="zerose-logo-svg hero-svg" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="zGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00f5d4" />
+            <stop offset="100%" stop-color="#00a896" />
+          </linearGradient>
+          <filter id="glowHero"><feGaussianBlur stdDeviation="3.5" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+        </defs>
+        <circle class="svg-ring-outer" cx="50" cy="50" r="44" />
+        <circle class="svg-ring-inner" cx="50" cy="50" r="36" />
+        <path class="svg-z-shape" filter="url(#glowHero)" stroke="url(#zGradHero)" d="M 28 32 L 70 32 L 32 68 L 62 68 L 74 54 M 60 68 L 76 68 L 76 52" />
+        <circle class="svg-node" cx="70" cy="32" r="4" />
+      </svg>
+    </div>
+
+    <!-- 2. Badge Block (Directly Under Logo) -->
+    <div class="badge-wrapper">
+      <div class="glow-badge"><span class="pulse-dot"></span> Next-Gen AI Node Network</div>
+    </div>
+
+    <!-- 3. Title & Description -->
+    <h1 class="gradient-title">Enterprise Grade AI Automation & Scale</h1>
+    <p class="hero-subtext">ZEROSE empowers modern businesses with custom AI agents, automated workflow engine nodes, and ultra-secure web infrastructure.</p>
+    
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-glow">Start Automation</a>
+      <a href="#projects" class="btn btn-glass">Explore Open Source</a>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="section-title reveal">
+      <h2>High-Performance Solutions</h2>
+      <p>Automate repetitive business processes with enterprise security</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="glass-card reveal">
+        <div class="card-icon"><i class="fas fa-brain"></i></div>
+        <h3>Autonomous AI Agents</h3>
+        <p>Smart conversational and operational bots designed for 24/7 lead qualification, booking, and user triage.</p>
+      </div>
+
+      <div class="glass-card reveal">
+        <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+        <h3>Workflow Node Networks</h3>
+        <p>Integrate your CRMs, ERPs, and databases into a seamless real-time automated pipeline.</p>
+      </div>
+
+      <div class="glass-card reveal">
+        <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
+        <h3>Enterprise Web Portals</h3>
+        <p>High-speed, bug-free full-stack web platforms protected with SSL encryption, DDoS resistance, and zero trust architecture.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub Projects Section -->
+  <section id="projects" class="projects">
+    <div class="section-title reveal">
+      <h2>Live GitHub Repositories</h2>
+      <p>Real-time projects synced automatically via GitHub REST API</p>
+    </div>
+    <div class="grid-3" id="githubContainer">
+      <!-- Dynamically populated or fallback -->
+    </div>
+  </section>
+
+  <!-- Security Compliance Banner -->
+  <section id="security" class="security-section">
+    <div class="glass-card reveal security-card">
+      <i class="fas fa-user-shield sec-icon"></i>
+      <h2>High-Level Security & Data Protection</h2>
+      <p>We prioritize zero-trust data protection, CSRF protection, rate limiting, and encrypted API communication across all client projects.</p>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section id="contact" class="contact">
+    <div class="glass-form-box reveal">
+      <h2>Connect With ZEROSE</h2>
+      <p>Accelerate your business with modern AI engineering.</p>
+      
+      <form id="contactForm">
+        <div class="input-group">
+          <input type="text" id="name" placeholder="Full Name" required>
+        </div>
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Business Email" required>
+        </div>
+        <div class="input-group">
+          <textarea id="message" rows="4" placeholder="Describe your workflow needs..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-glow btn-block" id="submitBtn">Send Proposal</button>
+        <div id="formStatus" class="form-status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#home" class="dynamic-brand">
+          <svg class="zerose-logo-svg footer-svg" viewBox="0 0 100 100">
+            <circle class="svg-ring-outer" cx="50" cy="50" r="44" />
+            <circle class="svg-ring-inner" cx="50" cy="50" r="36" />
+            <path class="svg-z-shape" stroke="url(#zGradNav)" filter="url(#glowNav)" d="M 28 32 L 70 32 L 32 68 L 62 68 L 74 54 M 60 68 L 76 68 L 76 52" />
+          </svg>
+          <div class="brand-text">
+            <span class="logo-name">ZEROSE</span>
+            <span class="logo-sub">INNOVATE | DEVELOP | GROW</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Social Triggers -->
+      <div class="social-links">
+        <a href="https://github.com/zerose-code" target="_blank" class="social-btn github" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="www.linkedin.com/in/muhmmad-atif-ali-developer" target="_blank" class="social-btn linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://instagram.com/official.matif" target="_blank" class="social-btn instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/923147460480" target="_blank" class="social-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <a href="#" id="privacyBtn">Privacy Policy</a> | 
+      <a href="#" id="termsBtn">Terms of Service</a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 ZEROSE Startup Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Direct WhatsApp Action Button -->
+  <a href="https://wa.me/923147460480" class="floating-whatsapp" target="_blank" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- AI CUSTOMER CARE CHATBOT WIDGET -->
+  <div class="ai-chat-launcher" id="aiLauncher" title="Ask ZEROSE AI Assistant">
+    <i class="fas fa-robot"></i>
+  </div>
+
+  <div class="ai-chat-window" id="aiChatWindow">
+    <div class="ai-chat-header">
+      <div class="ai-info">
+        <div class="ai-avatar"><i class="fas fa-robot"></i></div>
+        <div>
+          <h4>ZEROSE AI Support</h4>
+          <span class="online-status">● Online Assistant</span>
+        </div>
+      </div>
+      <button class="close-chat" id="closeChat"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="ai-chat-messages" id="chatMessages">
+      <div class="message bot">
+        👋 Hi! Welcome to <strong>ZEROSE</strong>. I am your AI assistant. How can I help you automate your business today?
+      </div>
+    </div>
+
+    <div class="ai-chat-input">
+      <input type="text" id="chatInput" placeholder="Ask anything about ZEROSE..." />
+      <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+
+  <!-- PRIVACY POLICY MODAL -->
+  <div class="modal-overlay" id="privacyModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closePrivacy">&times;</button>
+      <h2>Privacy Policy</h2>
+      <p>At ZEROSE, we safeguard your data using zero-leak security standards. All input data passed through our web contact channels or AI agents is encrypted using industry protocols (AES-256 / TLS 1.3). We do not sell or share customer data with third parties.</p>
+    </div>
+  </div>
+
+  <!-- TERMS OF SERVICE MODAL -->
+  <div class="modal-overlay" id="termsModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeTerms">&times;</button>
+      <h2>Terms of Service</h2>
+      <p>All software engineering, AI workflow scripts, and web platforms developed by ZEROSE are subject to custom software service agreements. Users agree not to misuse our API channels or perform malicious security scans on this infrastructure.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
