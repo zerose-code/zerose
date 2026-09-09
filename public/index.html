@@ -2,64 +2,173 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description"
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
     content="ZEROSE builds AI-powered software, automation systems, data solutions and digital experiences for modern businesses.">
 
-  <meta name="keywords"
+  <meta
+    name="keywords"
     content="AI automation, AI agents, business automation, software development, data analytics, web development, cybersecurity, ZEROSE">
 
-  <meta name="author" content="ZEROSE">
+  <meta
+    name="author"
+    content="ZEROSE">
 
-  <meta property="og:title" content="ZEROSE — Build Smarter. Automate More. Grow Faster.">
-  <meta property="og:description"
+  <meta
+    name="robots"
+    content="index, follow">
+
+  <meta
+    name="theme-color"
+    content="#07111f">
+
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="ZEROSE — Build Smarter. Automate More. Grow Faster.">
+
+  <meta
+    property="og:description"
     content="AI, software, automation, data and digital solutions for modern businesses.">
-  <meta property="og:type" content="website">
 
-  <title>ZEROSE | Build Smarter. Automate More. Grow Faster.</title>
+  <meta
+    property="og:type"
+    content="website">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta
+    property="og:site_name"
+    content="ZEROSE">
+
+  <meta
+    property="og:url"
+    content="https://zerose.vercel.app/">
+
+  <!-- Twitter / X -->
+  <meta
+    name="twitter:card"
+    content="summary">
+
+  <meta
+    name="twitter:title"
+    content="ZEROSE — Build Smarter. Automate More. Grow Faster.">
+
+  <meta
+    name="twitter:description"
+    content="AI, software, automation, data and digital solutions for modern businesses.">
+
+  <link
+    rel="canonical"
+    href="https://zerose.vercel.app/">
+
+  <title>
+    ZEROSE | Build Smarter. Automate More. Grow Faster.
+  </title>
+
+  <!-- Google Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
+  <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Main CSS -->
+  <link
+    rel="stylesheet"
+    href="style.css">
 </head>
 
 <body>
 
-  <!-- Background -->
-  <canvas id="bgCanvas"></canvas>
+  <!-- ================= BACKGROUND ================= -->
+
+  <canvas
+    id="bgCanvas"
+    aria-hidden="true">
+  </canvas>
+
 
   <!-- ================= NAVBAR ================= -->
-  <nav class="navbar">
+
+  <nav
+    class="navbar"
+    aria-label="Main navigation">
+
     <div class="nav-container">
 
-      <a href="#home" class="dynamic-brand">
+      <a
+        href="#home"
+        class="dynamic-brand"
+        aria-label="ZEROSE home">
 
-        <svg class="zerose-logo-svg" viewBox="0 0 100 100" aria-label="ZEROSE logo">
+        <svg
+          class="zerose-logo-svg"
+          viewBox="0 0 100 100"
+          aria-label="ZEROSE logo"
+          role="img">
+
           <defs>
-            <linearGradient id="zGradNav" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#00f5d4"/>
-              <stop offset="100%" stop-color="#00a896"/>
+
+            <linearGradient
+              id="zGradNav"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%">
+
+              <stop
+                offset="0%"
+                stop-color="#00f5d4"/>
+
+              <stop
+                offset="100%"
+                stop-color="#00a896"/>
+
             </linearGradient>
 
-            <filter id="glowNav">
-              <feGaussianBlur stdDeviation="3.5" result="blur"/>
-              <feComposite in="SourceGraphic"
+            <filter
+              id="glowNav">
+
+              <feGaussianBlur
+                stdDeviation="3.5"
+                result="blur"/>
+
+              <feComposite
+                in="SourceGraphic"
                 in2="blur"
                 operator="over"/>
+
             </filter>
+
           </defs>
 
-          <circle class="svg-ring-outer" cx="50" cy="50" r="44"/>
-          <circle class="svg-ring-inner" cx="50" cy="50" r="36"/>
+          <circle
+            class="svg-ring-outer"
+            cx="50"
+            cy="50"
+            r="44"/>
+
+          <circle
+            class="svg-ring-inner"
+            cx="50"
+            cy="50"
+            r="36"/>
 
           <path
             class="svg-z-shape"
@@ -67,78 +176,173 @@
             stroke="url(#zGradNav)"
             d="M 28 32 L 70 32 L 32 68 L 62 68 L 74 54 M 60 68 L 76 68 L 76 52"/>
 
-          <circle class="svg-node" cx="70" cy="32" r="3"/>
+          <circle
+            class="svg-node"
+            cx="70"
+            cy="32"
+            r="3"/>
+
         </svg>
 
+
         <div class="brand-text">
-          <span class="logo-name">ZEROSE</span>
-          <span class="logo-sub">BUILD • AUTOMATE • GROW</span>
+
+          <span class="logo-name">
+            ZEROSE
+          </span>
+
+          <span class="logo-sub">
+            BUILD • AUTOMATE • GROW
+          </span>
+
         </div>
 
       </a>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#solutions">Solutions</a></li>
-        <li><a href="#industries">Industries</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#contact">Contact</a></li>
+
+      <ul
+        class="nav-links"
+        id="navLinks">
+
+        <li>
+          <a href="#home">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a href="#solutions">
+            Solutions
+          </a>
+        </li>
+
+        <li>
+          <a href="#industries">
+            Industries
+          </a>
+        </li>
+
+        <li>
+          <a href="#process">
+            Process
+          </a>
+        </li>
+
+        <li>
+          <a href="#work">
+            Work
+          </a>
+        </li>
+
+        <li>
+          <a href="#contact">
+            Contact
+          </a>
+        </li>
+
       </ul>
+
 
       <div class="nav-actions">
 
         <button
           id="themeToggle"
           class="theme-btn"
+          type="button"
           title="Toggle theme"
           aria-label="Toggle theme">
+
           <i class="fas fa-moon"></i>
+
         </button>
+
 
         <div
           class="hamburger"
           id="hamburger"
           aria-label="Open menu"
+          aria-controls="navLinks"
+          aria-expanded="false"
           role="button"
           tabindex="0">
+
           <i class="fas fa-bars"></i>
+
         </div>
 
       </div>
 
     </div>
+
   </nav>
 
 
-  <!-- ================= HERO ================= -->
+  <!-- ================= MAIN ================= -->
 
   <main>
 
-    <section id="home" class="hero">
+
+    <!-- ================= HERO ================= -->
+
+    <section
+      id="home"
+      class="hero">
 
       <div class="hero-content">
 
         <div class="hero-logo-wrapper">
-          <svg class="zerose-logo-svg hero-svg" viewBox="0 0 100 100">
+
+          <svg
+            class="zerose-logo-svg hero-svg"
+            viewBox="0 0 100 100"
+            aria-hidden="true">
 
             <defs>
-              <linearGradient id="zGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#00f5d4"/>
-                <stop offset="100%" stop-color="#00a896"/>
+
+              <linearGradient
+                id="zGradHero"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%">
+
+                <stop
+                  offset="0%"
+                  stop-color="#00f5d4"/>
+
+                <stop
+                  offset="100%"
+                  stop-color="#00a896"/>
+
               </linearGradient>
 
-              <filter id="glowHero">
-                <feGaussianBlur stdDeviation="3.5" result="blur"/>
+              <filter
+                id="glowHero">
+
+                <feGaussianBlur
+                  stdDeviation="3.5"
+                  result="blur"/>
+
                 <feComposite
                   in="SourceGraphic"
                   in2="blur"
                   operator="over"/>
+
               </filter>
+
             </defs>
 
-            <circle class="svg-ring-outer" cx="50" cy="50" r="44"/>
-            <circle class="svg-ring-inner" cx="50" cy="50" r="36"/>
+            <circle
+              class="svg-ring-outer"
+              cx="50"
+              cy="50"
+              r="44"/>
+
+            <circle
+              class="svg-ring-inner"
+              cx="50"
+              cy="50"
+              r="36"/>
 
             <path
               class="svg-z-shape"
@@ -146,43 +350,76 @@
               stroke="url(#zGradHero)"
               d="M 28 32 L 70 32 L 32 68 L 62 68 L 74 54 M 60 68 L 76 68 L 76 52"/>
 
-            <circle class="svg-node" cx="70" cy="32" r="4"/>
+            <circle
+              class="svg-node"
+              cx="70"
+              cy="32"
+              r="4"/>
 
           </svg>
+
         </div>
+
 
         <div class="badge-wrapper">
+
           <div class="glow-badge">
+
             <span class="pulse-dot"></span>
+
             AI • SOFTWARE • AUTOMATION • DATA
+
           </div>
+
         </div>
 
+
         <h1 class="gradient-title">
+
           Build Smarter.<br>
           Automate More.<br>
-          <span>Grow Faster.</span>
+
+          <span>
+            Grow Faster.
+          </span>
+
         </h1>
 
+
         <p class="hero-subtext">
-          ZEROSE builds intelligent business systems using AI, software,
-          automation, data and modern digital experiences.
+
+          ZEROSE builds intelligent business systems using AI,
+          software, automation, data and modern digital experiences.
+
         </p>
+
 
         <div class="hero-buttons">
 
-          <a href="#contact" class="btn btn-glow">
+          <a
+            href="#contact"
+            class="btn btn-glow">
+
             Start a Project
+
             <i class="fas fa-arrow-right"></i>
+
           </a>
 
-          <a href="#solutions" class="btn btn-glass">
+
+          <a
+            href="#solutions"
+            class="btn btn-glass">
+
             Explore Solutions
+
           </a>
 
         </div>
 
+
         <div class="hero-proof">
+
           <div>
             <strong>AI</strong>
             <span>Automation</span>
@@ -202,6 +439,7 @@
             <strong>Growth</strong>
             <span>Systems</span>
           </div>
+
         </div>
 
       </div>
@@ -221,7 +459,11 @@
 
         <h2>
           Your business has problems.<br>
-          <span>We build the systems to solve them.</span>
+
+          <span>
+            We build the systems to solve them.
+          </span>
+
         </h2>
 
         <p>
@@ -236,35 +478,62 @@
       <div class="problem-grid">
 
         <div class="problem-card reveal">
+
           <i class="fas fa-user-plus"></i>
-          <h3>Not Enough Leads?</h3>
+
+          <h3>
+            Not Enough Leads?
+          </h3>
+
           <p>
             Build AI-powered lead capture, qualification and follow-up systems.
           </p>
+
         </div>
 
+
         <div class="problem-card reveal">
+
           <i class="fas fa-rotate"></i>
-          <h3>Too Much Repetitive Work?</h3>
+
+          <h3>
+            Too Much Repetitive Work?
+          </h3>
+
           <p>
             Automate repetitive business workflows and save valuable time.
           </p>
+
         </div>
 
+
         <div class="problem-card reveal">
+
           <i class="fas fa-chart-line"></i>
-          <h3>Can't Understand Your Data?</h3>
+
+          <h3>
+            Can't Understand Your Data?
+          </h3>
+
           <p>
             Turn raw business data into dashboards, KPIs and useful insights.
           </p>
+
         </div>
 
+
         <div class="problem-card reveal">
+
           <i class="fas fa-headset"></i>
-          <h3>Customer Support Overload?</h3>
+
+          <h3>
+            Customer Support Overload?
+          </h3>
+
           <p>
             Deploy intelligent AI assistants that handle common customer requests.
           </p>
+
         </div>
 
       </div>
@@ -274,15 +543,21 @@
 
     <!-- ================= SOLUTIONS ================= -->
 
-    <section id="solutions" class="services">
+    <section
+      id="solutions"
+      class="services">
 
       <div class="section-title reveal">
 
-        <span class="eyebrow">OUR SOLUTIONS</span>
+        <span class="eyebrow">
+          OUR SOLUTIONS
+        </span>
 
         <h2>
           Everything your business needs
-          <span>to operate smarter.</span>
+          <span>
+            to operate smarter.
+          </span>
         </h2>
 
         <p>
@@ -297,13 +572,17 @@
 
         <article class="solution-card reveal">
 
-          <div class="solution-number">01</div>
+          <div class="solution-number">
+            01
+          </div>
 
           <div class="card-icon">
             <i class="fas fa-brain"></i>
           </div>
 
-          <h3>AI & Automation</h3>
+          <h3>
+            AI & Automation
+          </h3>
 
           <p>
             Intelligent agents and automated workflows that handle
@@ -318,8 +597,13 @@
             <li>CRM Automation</li>
           </ul>
 
-          <a href="#contact" class="card-link">
-            Build with AI <i class="fas fa-arrow-right"></i>
+          <a
+            href="#contact"
+            class="card-link">
+
+            Build with AI
+            <i class="fas fa-arrow-right"></i>
+
           </a>
 
         </article>
@@ -327,13 +611,17 @@
 
         <article class="solution-card reveal">
 
-          <div class="solution-number">02</div>
+          <div class="solution-number">
+            02
+          </div>
 
           <div class="card-icon">
             <i class="fas fa-code"></i>
           </div>
 
-          <h3>Software & Web</h3>
+          <h3>
+            Software & Web
+          </h3>
 
           <p>
             Fast, scalable websites, web applications and custom
@@ -348,8 +636,13 @@
             <li>APIs & Backend Systems</li>
           </ul>
 
-          <a href="#contact" class="card-link">
-            Build your platform <i class="fas fa-arrow-right"></i>
+          <a
+            href="#contact"
+            class="card-link">
+
+            Build your platform
+            <i class="fas fa-arrow-right"></i>
+
           </a>
 
         </article>
@@ -357,13 +650,17 @@
 
         <article class="solution-card reveal">
 
-          <div class="solution-number">03</div>
+          <div class="solution-number">
+            03
+          </div>
 
           <div class="card-icon">
             <i class="fas fa-chart-pie"></i>
           </div>
 
-          <h3>Data & Analytics</h3>
+          <h3>
+            Data & Analytics
+          </h3>
 
           <p>
             Transform business data into clear dashboards,
@@ -378,8 +675,13 @@
             <li>Automated Reports</li>
           </ul>
 
-          <a href="#contact" class="card-link">
-            Unlock your data <i class="fas fa-arrow-right"></i>
+          <a
+            href="#contact"
+            class="card-link">
+
+            Unlock your data
+            <i class="fas fa-arrow-right"></i>
+
           </a>
 
         </article>
@@ -387,13 +689,17 @@
 
         <article class="solution-card reveal">
 
-          <div class="solution-number">04</div>
+          <div class="solution-number">
+            04
+          </div>
 
           <div class="card-icon">
             <i class="fas fa-pen-ruler"></i>
           </div>
 
-          <h3>Design & Digital Experience</h3>
+          <h3>
+            Design & Digital Experience
+          </h3>
 
           <p>
             Modern interfaces and visual identities that make
@@ -408,8 +714,13 @@
             <li>Product Design</li>
           </ul>
 
-          <a href="#contact" class="card-link">
-            Design your experience <i class="fas fa-arrow-right"></i>
+          <a
+            href="#contact"
+            class="card-link">
+
+            Design your experience
+            <i class="fas fa-arrow-right"></i>
+
           </a>
 
         </article>
@@ -417,13 +728,17 @@
 
         <article class="solution-card reveal">
 
-          <div class="solution-number">05</div>
+          <div class="solution-number">
+            05
+          </div>
 
           <div class="card-icon">
             <i class="fas fa-shield-halved"></i>
           </div>
 
-          <h3>Security & Reliability</h3>
+          <h3>
+            Security & Reliability
+          </h3>
 
           <p>
             Build safer digital systems with practical security,
@@ -438,8 +753,13 @@
             <li>Security Reviews</li>
           </ul>
 
-          <a href="#contact" class="card-link">
-            Secure your system <i class="fas fa-arrow-right"></i>
+          <a
+            href="#contact"
+            class="card-link">
+
+            Secure your system
+            <i class="fas fa-arrow-right"></i>
+
           </a>
 
         </article>
@@ -447,13 +767,17 @@
 
         <article class="solution-card reveal">
 
-          <div class="solution-number">06</div>
+          <div class="solution-number">
+            06
+          </div>
 
           <div class="card-icon">
             <i class="fas fa-rocket"></i>
           </div>
 
-          <h3>Growth Systems</h3>
+          <h3>
+            Growth Systems
+          </h3>
 
           <p>
             Connect technology, marketing and customer data
@@ -468,8 +792,13 @@
             <li>Growth Analytics</li>
           </ul>
 
-          <a href="#contact" class="card-link">
-            Grow your business <i class="fas fa-arrow-right"></i>
+          <a
+            href="#contact"
+            class="card-link">
+
+            Grow your business
+            <i class="fas fa-arrow-right"></i>
+
           </a>
 
         </article>
@@ -481,15 +810,21 @@
 
     <!-- ================= INDUSTRIES ================= -->
 
-    <section id="industries" class="industries-section">
+    <section
+      id="industries"
+      class="industries-section">
 
       <div class="section-title reveal">
 
-        <span class="eyebrow">INDUSTRIES</span>
+        <span class="eyebrow">
+          INDUSTRIES
+        </span>
 
         <h2>
           Built around your
-          <span>business.</span>
+          <span>
+            business.
+          </span>
         </h2>
 
         <p>
@@ -502,39 +837,66 @@
       <div class="industry-grid">
 
         <div class="industry-card reveal">
+
           <i class="fas fa-building"></i>
-          <h3>Real Estate</h3>
+
+          <h3>
+            Real Estate
+          </h3>
+
           <p>
             Lead capture, AI property assistants, CRM automation,
             follow-ups and sales dashboards.
           </p>
+
         </div>
 
+
         <div class="industry-card reveal">
+
           <i class="fas fa-layer-group"></i>
-          <h3>SaaS & Startups</h3>
+
+          <h3>
+            SaaS & Startups
+          </h3>
+
           <p>
             MVPs, SaaS platforms, AI features, dashboards,
             APIs and scalable product systems.
           </p>
+
         </div>
 
+
         <div class="industry-card reveal">
+
           <i class="fas fa-bullhorn"></i>
-          <h3>Marketing Agencies</h3>
+
+          <h3>
+            Marketing Agencies
+          </h3>
+
           <p>
             Client dashboards, reporting automation, lead systems
             and internal business tools.
           </p>
+
         </div>
 
+
         <div class="industry-card reveal">
+
           <i class="fas fa-cart-shopping"></i>
-          <h3>E-commerce</h3>
+
+          <h3>
+            E-commerce
+          </h3>
+
           <p>
             Customer automation, analytics, support systems,
             conversion tools and business intelligence.
           </p>
+
         </div>
 
       </div>
@@ -544,15 +906,21 @@
 
     <!-- ================= PROCESS ================= -->
 
-    <section id="process" class="process-section">
+    <section
+      id="process"
+      class="process-section">
 
       <div class="section-title reveal">
 
-        <span class="eyebrow">OUR PROCESS</span>
+        <span class="eyebrow">
+          OUR PROCESS
+        </span>
 
         <h2>
           From idea to
-          <span>intelligent system.</span>
+          <span>
+            intelligent system.
+          </span>
         </h2>
 
       </div>
@@ -566,7 +934,9 @@
 
           <i class="fas fa-magnifying-glass"></i>
 
-          <h3>Discover</h3>
+          <h3>
+            Discover
+          </h3>
 
           <p>
             Understand your business, problems, goals and workflows.
@@ -584,7 +954,9 @@
 
           <i class="fas fa-compass-drafting"></i>
 
-          <h3>Design</h3>
+          <h3>
+            Design
+          </h3>
 
           <p>
             Design the right user experience and technical architecture.
@@ -602,7 +974,9 @@
 
           <i class="fas fa-code"></i>
 
-          <h3>Build</h3>
+          <h3>
+            Build
+          </h3>
 
           <p>
             Develop your software, AI systems and business infrastructure.
@@ -620,7 +994,9 @@
 
           <i class="fas fa-robot"></i>
 
-          <h3>Automate</h3>
+          <h3>
+            Automate
+          </h3>
 
           <p>
             Connect systems and remove repetitive manual work.
@@ -638,7 +1014,9 @@
 
           <i class="fas fa-chart-line"></i>
 
-          <h3>Optimize</h3>
+          <h3>
+            Optimize
+          </h3>
 
           <p>
             Measure performance and continuously improve the system.
@@ -657,11 +1035,15 @@
 
       <div class="system-content reveal">
 
-        <span class="eyebrow">THE ZEROSE APPROACH</span>
+        <span class="eyebrow">
+          THE ZEROSE APPROACH
+        </span>
 
         <h2>
           Don't buy another tool.
-          <span>Build a connected system.</span>
+          <span>
+            Build a connected system.
+          </span>
         </h2>
 
         <p>
@@ -669,6 +1051,7 @@
           shouldn't work separately. ZEROSE connects them into
           one intelligent business workflow.
         </p>
+
 
         <div class="system-flow">
 
@@ -707,15 +1090,21 @@
 
     <!-- ================= WORK ================= -->
 
-    <section id="work" class="projects">
+    <section
+      id="work"
+      class="projects">
 
       <div class="section-title reveal">
 
-        <span class="eyebrow">OUR WORK</span>
+        <span class="eyebrow">
+          OUR WORK
+        </span>
 
         <h2>
           Systems we're
-          <span>building.</span>
+          <span>
+            building.
+          </span>
         </h2>
 
         <p>
@@ -724,14 +1113,25 @@
 
       </div>
 
-      <div class="grid-3" id="githubContainer">
+
+      <div
+        class="grid-3"
+        id="githubContainer">
+
         <div class="glass-card project-placeholder reveal">
+
           <i class="fas fa-code-branch"></i>
-          <h3>Loading projects...</h3>
+
+          <h3>
+            Loading projects...
+          </h3>
+
           <p>
             Fetching the latest public ZEROSE repositories.
           </p>
+
         </div>
+
       </div>
 
     </section>
@@ -739,9 +1139,12 @@
 
     <!-- ================= SECURITY ================= -->
 
-    <section id="security" class="security-section">
+    <section
+      id="security"
+      class="security-section">
 
-      <div class="glass-card reveal security-card">
+      <div
+        class="glass-card reveal security-card">
 
         <div class="security-content">
 
@@ -749,11 +1152,15 @@
 
           <div>
 
-            <span class="eyebrow">SECURITY FIRST</span>
+            <span class="eyebrow">
+              SECURITY FIRST
+            </span>
 
             <h2>
               Build fast.
-              <span>Build responsibly.</span>
+              <span>
+                Build responsibly.
+              </span>
             </h2>
 
             <p>
@@ -777,11 +1184,15 @@
 
       <div class="cta-card reveal">
 
-        <span class="eyebrow">READY TO BUILD?</span>
+        <span class="eyebrow">
+          READY TO BUILD?
+        </span>
 
         <h2>
           Tell us what you're
-          <span>trying to improve.</span>
+          <span>
+            trying to improve.
+          </span>
         </h2>
 
         <p>
@@ -790,9 +1201,14 @@
           digital transformation — let's build it.
         </p>
 
-        <a href="#contact" class="btn btn-glow">
+        <a
+          href="#contact"
+          class="btn btn-glow">
+
           Start a Conversation
+
           <i class="fas fa-arrow-right"></i>
+
         </a>
 
       </div>
@@ -802,23 +1218,31 @@
 
     <!-- ================= CONTACT ================= -->
 
-    <section id="contact" class="contact">
+    <section
+      id="contact"
+      class="contact">
 
       <div class="contact-layout">
 
+
         <div class="contact-info reveal">
 
-          <span class="eyebrow">LET'S WORK TOGETHER</span>
+          <span class="eyebrow">
+            LET'S WORK TOGETHER
+          </span>
 
           <h2>
             Have a business
-            <span>problem?</span>
+            <span>
+              problem?
+            </span>
           </h2>
 
           <p>
             Tell us what you're trying to build, automate or improve.
             We'll help you identify the right solution.
           </p>
+
 
           <div class="contact-points">
 
@@ -849,17 +1273,23 @@
 
         <div class="glass-form-box reveal">
 
-          <h2>Start Your Project</h2>
+          <h2>
+            Start Your Project
+          </h2>
 
           <p>
             Tell us a little about your business and requirements.
           </p>
 
+
           <form id="contactForm">
+
 
             <div class="input-group">
 
-              <label for="name">Name</label>
+              <label for="name">
+                Name
+              </label>
 
               <input
                 type="text"
@@ -867,6 +1297,7 @@
                 name="name"
                 placeholder="Your full name"
                 autocomplete="name"
+                maxlength="100"
                 required>
 
             </div>
@@ -874,7 +1305,9 @@
 
             <div class="input-group">
 
-              <label for="email">Business Email</label>
+              <label for="email">
+                Business Email
+              </label>
 
               <input
                 type="email"
@@ -882,6 +1315,7 @@
                 name="email"
                 placeholder="you@company.com"
                 autocomplete="email"
+                maxlength="150"
                 required>
 
             </div>
@@ -889,31 +1323,62 @@
 
             <div class="input-group">
 
-              <label for="company">Company</label>
+              <label for="company">
+                Company
+              </label>
 
               <input
                 type="text"
                 id="company"
                 name="company"
-                placeholder="Your company">
+                placeholder="Your company"
+                autocomplete="organization"
+                maxlength="150">
 
             </div>
 
 
             <div class="input-group">
 
-              <label for="service">What do you need?</label>
+              <label for="service">
+                What do you need?
+              </label>
 
-              <select id="service" name="service">
+              <select
+                id="service"
+                name="service">
 
-                <option value="">Select a solution</option>
-                <option value="AI & Automation">AI & Automation</option>
-                <option value="Software & Web">Software & Web</option>
-                <option value="Data & Analytics">Data & Analytics</option>
-                <option value="Design & UX">Design & UX</option>
-                <option value="Security">Security</option>
-                <option value="Growth Systems">Growth Systems</option>
-                <option value="Custom Solution">Custom Solution</option>
+                <option value="">
+                  Select a solution
+                </option>
+
+                <option value="AI & Automation">
+                  AI & Automation
+                </option>
+
+                <option value="Software & Web">
+                  Software & Web
+                </option>
+
+                <option value="Data & Analytics">
+                  Data & Analytics
+                </option>
+
+                <option value="Design & UX">
+                  Design & UX
+                </option>
+
+                <option value="Security">
+                  Security
+                </option>
+
+                <option value="Growth Systems">
+                  Growth Systems
+                </option>
+
+                <option value="Custom Solution">
+                  Custom Solution
+                </option>
 
               </select>
 
@@ -922,12 +1387,15 @@
 
             <div class="input-group">
 
-              <label for="message">Tell us about your project</label>
+              <label for="message">
+                Tell us about your project
+              </label>
 
               <textarea
                 id="message"
                 name="message"
                 rows="5"
+                maxlength="3000"
                 placeholder="What are you trying to build, automate or improve?"
                 required></textarea>
 
@@ -940,14 +1408,17 @@
               id="submitBtn">
 
               Send Project Request
+
               <i class="fas fa-paper-plane"></i>
 
             </button>
 
+
             <div
               id="formStatus"
               class="form-status"
-              role="status">
+              role="status"
+              aria-live="polite">
             </div>
 
           </form>
@@ -967,21 +1438,51 @@
 
     <div class="footer-container">
 
+
       <div class="footer-brand">
 
-        <a href="#home" class="dynamic-brand">
+        <a
+          href="#home"
+          class="dynamic-brand"
+          aria-label="ZEROSE home">
 
-          <svg class="zerose-logo-svg footer-svg" viewBox="0 0 100 100">
+          <svg
+            class="zerose-logo-svg footer-svg"
+            viewBox="0 0 100 100"
+            aria-hidden="true">
 
             <defs>
-              <linearGradient id="zGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#00f5d4"/>
-                <stop offset="100%" stop-color="#00a896"/>
+
+              <linearGradient
+                id="zGradFooter"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%">
+
+                <stop
+                  offset="0%"
+                  stop-color="#00f5d4"/>
+
+                <stop
+                  offset="100%"
+                  stop-color="#00a896"/>
+
               </linearGradient>
+
             </defs>
 
-            <circle class="svg-ring-outer" cx="50" cy="50" r="44"/>
-            <circle class="svg-ring-inner" cx="50" cy="50" r="36"/>
+            <circle
+              class="svg-ring-outer"
+              cx="50"
+              cy="50"
+              r="44"/>
+
+            <circle
+              class="svg-ring-inner"
+              cx="50"
+              cy="50"
+              r="36"/>
 
             <path
               class="svg-z-shape"
@@ -990,12 +1491,21 @@
 
           </svg>
 
+
           <div class="brand-text">
-            <span class="logo-name">ZEROSE</span>
-            <span class="logo-sub">BUILD • AUTOMATE • GROW</span>
+
+            <span class="logo-name">
+              ZEROSE
+            </span>
+
+            <span class="logo-sub">
+              BUILD • AUTOMATE • GROW
+            </span>
+
           </div>
 
         </a>
+
 
         <p class="footer-description">
           Intelligent technology systems for modern businesses.
@@ -1011,35 +1521,50 @@
           target="_blank"
           rel="noopener noreferrer"
           class="social-btn"
-          title="GitHub">
+          title="GitHub"
+          aria-label="ZEROSE GitHub">
+
           <i class="fab fa-github"></i>
+
         </a>
+
 
         <a
           href="https://www.linkedin.com/"
           target="_blank"
           rel="noopener noreferrer"
           class="social-btn"
-          title="LinkedIn">
+          title="LinkedIn"
+          aria-label="ZEROSE LinkedIn">
+
           <i class="fab fa-linkedin-in"></i>
+
         </a>
+
 
         <a
           href="https://instagram.com/"
           target="_blank"
           rel="noopener noreferrer"
           class="social-btn"
-          title="Instagram">
+          title="Instagram"
+          aria-label="ZEROSE Instagram">
+
           <i class="fab fa-instagram"></i>
+
         </a>
+
 
         <a
           href="https://wa.me/923147460480"
           target="_blank"
           rel="noopener noreferrer"
           class="social-btn"
-          title="WhatsApp">
+          title="WhatsApp"
+          aria-label="Chat with ZEROSE on WhatsApp">
+
           <i class="fab fa-whatsapp"></i>
+
         </a>
 
       </div>
@@ -1049,14 +1574,24 @@
 
     <div class="footer-legal">
 
-      <a href="#" id="privacyBtn">
+      <a
+        href="#"
+        id="privacyBtn">
+
         Privacy Policy
+
       </a>
 
-      <span>•</span>
+      <span>
+        •
+      </span>
 
-      <a href="#" id="termsBtn">
+      <a
+        href="#"
+        id="termsBtn">
+
         Terms of Service
+
       </a>
 
     </div>
@@ -1065,7 +1600,8 @@
     <div class="footer-bottom">
 
       <p>
-        © 2026 ZEROSE. All rights reserved.
+        © <span id="currentYear">2026</span> ZEROSE.
+        All rights reserved.
       </p>
 
       <p>
@@ -1084,29 +1620,38 @@
     class="floating-whatsapp"
     target="_blank"
     rel="noopener noreferrer"
-    title="Chat with ZEROSE on WhatsApp">
+    title="Chat with ZEROSE on WhatsApp"
+    aria-label="Chat with ZEROSE on WhatsApp">
 
     <i class="fab fa-whatsapp"></i>
 
   </a>
 
 
-  <!-- ================= AI CHAT ================= -->
+  <!-- ================= AI CHAT LAUNCHER ================= -->
 
   <div
     class="ai-chat-launcher"
     id="aiLauncher"
-    title="Talk to ZEROSE AI">
+    title="Talk to ZEROSE AI"
+    role="button"
+    tabindex="0"
+    aria-label="Open ZEROSE AI Consultant">
 
     <i class="fas fa-robot"></i>
 
   </div>
 
 
+  <!-- ================= AI CHAT WINDOW ================= -->
+
   <div
     class="ai-chat-window"
     id="aiChatWindow"
-    aria-label="ZEROSE AI Consultant">
+    aria-label="ZEROSE AI Consultant"
+    role="dialog"
+    aria-modal="false">
+
 
     <div class="ai-chat-header">
 
@@ -1116,9 +1661,12 @@
           <i class="fas fa-robot"></i>
         </div>
 
+
         <div>
 
-          <h4>ZEROSE AI Consultant</h4>
+          <h4>
+            ZEROSE AI Consultant
+          </h4>
 
           <span class="online-status">
             ● Ready to help
@@ -1128,9 +1676,11 @@
 
       </div>
 
+
       <button
         class="close-chat"
         id="closeChat"
+        type="button"
         aria-label="Close AI assistant">
 
         <i class="fas fa-times"></i>
@@ -1142,23 +1692,27 @@
 
     <div
       class="ai-chat-messages"
-      id="chatMessages">
+      id="chatMessages"
+      aria-live="polite"
+      aria-label="AI conversation">
 
       <div class="message bot">
 
-        👋 Hi! I'm ZEROSE AI.
+        <p>
+          👋 Hi! I'm ZEROSE AI.
+        </p>
 
-        <br><br>
+        <p>
+          Tell me what you're trying to improve:
+        </p>
 
-        Tell me what you're trying to improve:
-
-        <br><br>
-
-        • Get more leads<br>
-        • Automate operations<br>
-        • Build software<br>
-        • Analyze business data<br>
-        • Improve customer support
+        <p>
+          • Get more leads<br>
+          • Automate operations<br>
+          • Build software<br>
+          • Analyze business data<br>
+          • Improve customer support
+        </p>
 
       </div>
 
@@ -1171,11 +1725,15 @@
         type="text"
         id="chatInput"
         placeholder="Describe your business problem..."
-        autocomplete="off">
+        autocomplete="off"
+        maxlength="1000"
+        aria-label="Describe your business problem">
 
       <button
         id="sendChatBtn"
-        aria-label="Send message">
+        type="button"
+        aria-label="Send message"
+        title="Send message">
 
         <i class="fas fa-paper-plane"></i>
 
@@ -1186,30 +1744,138 @@
   </div>
 
 
-  <!-- ================= PRIVACY ================= -->
+  <!-- ================= PRIVACY POLICY ================= -->
 
   <div
     class="modal-overlay"
-    id="privacyModal">
+    id="privacyModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="privacyTitle">
 
     <div class="modal-card">
 
       <button
         class="modal-close"
         id="closePrivacy"
+        type="button"
         aria-label="Close privacy policy">
 
         &times;
 
       </button>
 
-      <h2>Privacy Policy</h2>
+
+      <h2 id="privacyTitle">
+        Privacy Policy
+      </h2>
+
 
       <p>
-        ZEROSE respects your privacy. Information submitted through
-        our contact channels is used to respond to your business
-        inquiry and provide requested services. We do not sell
-        personal information.
+        ZEROSE respects your privacy and is committed to protecting
+        the information you provide through this website.
+      </p>
+
+
+      <h3>
+        Information We Collect
+      </h3>
+
+      <p>
+        When you contact ZEROSE through this website, we may collect
+        information such as your name, business email address,
+        company name, selected service and the details of your
+        project or business inquiry.
+      </p>
+
+
+      <h3>
+        How We Use Your Information
+      </h3>
+
+      <p>
+        Information submitted through the website may be used to
+        respond to inquiries, understand project requirements,
+        prepare proposals, provide requested services and communicate
+        with you regarding your project.
+      </p>
+
+
+      <h3>
+        AI Assistant
+      </h3>
+
+      <p>
+        Messages submitted through the ZEROSE AI Assistant are sent
+        to our website server so the assistant can provide a response.
+        The current assistant is designed for general business
+        questions and should not be used to submit passwords,
+        payment information or other highly sensitive information.
+      </p>
+
+
+      <h3>
+        Data Sharing
+      </h3>
+
+      <p>
+        ZEROSE does not sell personal information. Information may
+        be processed by essential technology and communication
+        providers used to operate the website and respond to
+        business inquiries.
+      </p>
+
+
+      <h3>
+        Data Security
+      </h3>
+
+      <p>
+        ZEROSE uses reasonable technical and organizational measures
+        to help protect information submitted through the website.
+        However, no internet-based system can be guaranteed to be
+        completely secure.
+      </p>
+
+
+      <h3>
+        Data Retention
+      </h3>
+
+      <p>
+        Business inquiry information may be retained for as long as
+        reasonably necessary to respond to requests, manage projects,
+        maintain appropriate business records or meet applicable
+        obligations.
+      </p>
+
+
+      <h3>
+        Your Privacy
+      </h3>
+
+      <p>
+        If you have questions about information you have submitted
+        to ZEROSE or would like to request its review or removal,
+        please contact ZEROSE through the website contact form.
+      </p>
+
+
+      <h3>
+        Policy Updates
+      </h3>
+
+      <p>
+        ZEROSE may update this Privacy Policy when its services,
+        technology or business practices change. The latest version
+        will be made available on this website.
+      </p>
+
+
+      <p>
+        <strong>
+          Last updated: September 2026
+        </strong>
       </p>
 
     </div>
@@ -1217,36 +1883,168 @@
   </div>
 
 
-  <!-- ================= TERMS ================= -->
+  <!-- ================= TERMS OF SERVICE ================= -->
 
   <div
     class="modal-overlay"
-    id="termsModal">
+    id="termsModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="termsTitle">
 
     <div class="modal-card">
 
       <button
         class="modal-close"
         id="closeTerms"
-        aria-label="Close terms">
+        type="button"
+        aria-label="Close terms of service">
 
         &times;
 
       </button>
 
-      <h2>Terms of Service</h2>
+
+      <h2 id="termsTitle">
+        Terms of Service
+      </h2>
+
 
       <p>
-        ZEROSE provides custom software, AI, automation, design
-        and data services under project-specific agreements.
-        Project scope, pricing, timelines and responsibilities
-        are agreed with the client before development begins.
+        These Terms of Service describe the general terms under which
+        ZEROSE provides software development, AI, automation, design,
+        data and related digital services.
+      </p>
+
+
+      <h3>
+        Services
+      </h3>
+
+      <p>
+        ZEROSE may provide custom websites, web applications,
+        AI solutions, automation workflows, integrations,
+        dashboards, design services and other technology solutions
+        depending on the agreed project scope.
+      </p>
+
+
+      <h3>
+        Project Scope
+      </h3>
+
+      <p>
+        Project requirements, features, deliverables, pricing,
+        timelines, revisions and responsibilities should be agreed
+        between ZEROSE and the client before development begins.
+      </p>
+
+
+      <h3>
+        Client Responsibilities
+      </h3>
+
+      <p>
+        Clients are responsible for providing accurate project
+        information, required content, credentials, approvals and
+        other materials necessary to complete the agreed work.
+        Clients must also have the legal right to provide any
+        content or materials supplied to ZEROSE.
+      </p>
+
+
+      <h3>
+        Payments
+      </h3>
+
+      <p>
+        Payment terms, deposits, milestones and final payment
+        requirements will be agreed on a project-by-project basis.
+        Work may be paused when agreed payments or required
+        approvals are delayed.
+      </p>
+
+
+      <h3>
+        Intellectual Property
+      </h3>
+
+      <p>
+        Ownership and licensing of project files, source code,
+        designs, content and other deliverables will depend on
+        the agreement made for the specific project.
+      </p>
+
+
+      <h3>
+        Third-Party Services
+      </h3>
+
+      <p>
+        Projects may use third-party services, APIs, hosting
+        providers, software libraries or integrations. Such
+        services may have their own terms, limitations, pricing
+        and privacy policies.
+      </p>
+
+
+      <h3>
+        Acceptable Use
+      </h3>
+
+      <p>
+        Clients must not use ZEROSE services or delivered software
+        for unlawful activities, fraud, abuse, unauthorized access
+        or activities that violate applicable laws or third-party
+        rights.
+      </p>
+
+
+      <h3>
+        Availability
+      </h3>
+
+      <p>
+        ZEROSE aims to provide reliable services but does not
+        guarantee that websites, applications, APIs or third-party
+        services will always be available without interruption
+        or errors.
+      </p>
+
+
+      <h3>
+        Changes to Projects
+      </h3>
+
+      <p>
+        Requirements or scope changes after approval may require
+        additional time, cost or a revised project agreement.
+      </p>
+
+
+      <h3>
+        Updates to These Terms
+      </h3>
+
+      <p>
+        ZEROSE may update these Terms of Service as its services
+        and business practices evolve. Updated terms will be
+        published on this website.
+      </p>
+
+
+      <p>
+        <strong>
+          Last updated: September 2026
+        </strong>
       </p>
 
     </div>
 
   </div>
 
+
+  <!-- ================= JAVASCRIPT ================= -->
 
   <script src="script.js"></script>
 
