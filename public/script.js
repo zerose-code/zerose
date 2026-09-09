@@ -4,6 +4,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+
     /* =====================================================
        HELPERS
        ===================================================== */
@@ -11,13 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const $ = (selector, parent = document) =>
         parent.querySelector(selector);
 
+
     const $$ = (selector, parent = document) =>
         [...parent.querySelectorAll(selector)];
 
 
     function escapeHTML(value) {
-        const div = document.createElement("div");
-        div.textContent = String(value ?? "");
+
+        const div =
+            document.createElement("div");
+
+        div.textContent =
+            String(value ?? "");
+
         return div.innerHTML;
     }
 
@@ -26,49 +33,99 @@ document.addEventListener("DOMContentLoaded", () => {
        BODY LOADED
        ===================================================== */
 
-    document.body.classList.add("js-loaded");
+    document.body.classList.add(
+        "js-loaded"
+    );
 
 
     /* =====================================================
        NAVBAR / MOBILE MENU
        ===================================================== */
 
-    const hamburger = $(".hamburger");
-    const navLinks = $(".nav-links");
+    const hamburger =
+        $(".hamburger");
+
+    const navLinks =
+        $(".nav-links");
+
 
     if (hamburger && navLinks) {
 
-        hamburger.addEventListener("click", () => {
+        function toggleMobileMenu() {
 
-            navLinks.classList.toggle("active");
-            hamburger.classList.toggle("active");
+            navLinks.classList.toggle(
+                "active"
+            );
+
+            hamburger.classList.toggle(
+                "active"
+            );
+
 
             const expanded =
-                hamburger.classList.contains("active");
+                hamburger.classList.contains(
+                    "active"
+                );
+
 
             hamburger.setAttribute(
                 "aria-expanded",
-                expanded
+                String(expanded)
             );
-        });
+
+        }
 
 
-        // Close mobile menu after clicking a link
-        $$(".nav-links a").forEach(link => {
+        hamburger.addEventListener(
+            "click",
+            toggleMobileMenu
+        );
 
-            link.addEventListener("click", () => {
 
-                navLinks.classList.remove("active");
-                hamburger.classList.remove("active");
+        hamburger.addEventListener(
+            "keydown",
+            event => {
 
-                hamburger.setAttribute(
-                    "aria-expanded",
-                    "false"
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    toggleMobileMenu();
+
+                }
+
+            }
+        );
+
+
+        $$(".nav-links a").forEach(
+            link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        navLinks.classList.remove(
+                            "active"
+                        );
+
+                        hamburger.classList.remove(
+                            "active"
+                        );
+
+                        hamburger.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
                 );
 
-            });
-
-        });
+            }
+        );
 
     }
 
@@ -77,49 +134,73 @@ document.addEventListener("DOMContentLoaded", () => {
        SMOOTH SCROLL
        ===================================================== */
 
-    $$('a[href^="#"]').forEach(link => {
+    $$('a[href^="#"]').forEach(
+        link => {
 
-        link.addEventListener("click", function (event) {
+            link.addEventListener(
+                "click",
+                function (event) {
 
-            const targetID =
-                this.getAttribute("href");
+                    const targetID =
+                        this.getAttribute(
+                            "href"
+                        );
 
-            if (
-                !targetID ||
-                targetID === "#"
-            ) {
-                return;
-            }
 
-            const target =
-                document.querySelector(targetID);
+                    if (
+                        !targetID ||
+                        targetID === "#"
+                    ) {
 
-            if (!target) return;
+                        return;
 
-            event.preventDefault();
+                    }
 
-            const navbar =
-                $(".navbar");
 
-            const navbarHeight =
-                navbar
-                    ? navbar.offsetHeight
-                    : 0;
+                    const target =
+                        document.querySelector(
+                            targetID
+                        );
 
-            const targetPosition =
-                target.getBoundingClientRect().top +
-                window.scrollY -
-                navbarHeight -
-                15;
 
-            window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth"
-            });
+                    if (!target) return;
 
-        });
 
-    });
+                    event.preventDefault();
+
+
+                    const navbar =
+                        $(".navbar");
+
+
+                    const navbarHeight =
+                        navbar
+                            ? navbar.offsetHeight
+                            : 0;
+
+
+                    const targetPosition =
+                        target.getBoundingClientRect().top +
+                        window.scrollY -
+                        navbarHeight -
+                        15;
+
+
+                    window.scrollTo({
+
+                        top:
+                            targetPosition,
+
+                        behavior:
+                            "smooth"
+
+                    });
+
+                }
+            );
+
+        }
+    );
 
 
     /* =====================================================
@@ -129,27 +210,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeToggle =
         $("#themeToggle");
 
+
     const savedTheme =
-        localStorage.getItem("zerose-theme");
+        localStorage.getItem(
+            "zerose-theme"
+        );
 
 
-    if (savedTheme === "light") {
+    if (
+        savedTheme === "light"
+    ) {
 
-        document.body.classList.add("light-mode");
+        document.body.classList.add(
+            "light-mode"
+        );
 
-        document.documentElement
-            .setAttribute(
-                "data-theme",
-                "light"
-            );
+        document.documentElement.setAttribute(
+            "data-theme",
+            "light"
+        );
 
     } else {
 
-        document.documentElement
-            .setAttribute(
-                "data-theme",
-                "dark"
-            );
+        document.documentElement.setAttribute(
+            "data-theme",
+            "dark"
+        );
 
     }
 
@@ -158,15 +244,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!themeToggle) return;
 
+
         const icon =
-            themeToggle.querySelector("i");
+            themeToggle.querySelector(
+                "i"
+            );
+
 
         if (!icon) return;
+
 
         const isLight =
             document.body.classList.contains(
                 "light-mode"
             );
+
 
         icon.className =
             isLight
@@ -190,13 +282,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         "light-mode"
                     );
 
-                document.documentElement
-                    .setAttribute(
-                        "data-theme",
-                        isLight
-                            ? "light"
-                            : "dark"
-                    );
+
+                document.documentElement.setAttribute(
+                    "data-theme",
+                    isLight
+                        ? "light"
+                        : "dark"
+                );
+
 
                 localStorage.setItem(
                     "zerose-theme",
@@ -204,6 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         ? "light"
                         : "dark"
                 );
+
 
                 updateThemeIcon();
 
@@ -221,51 +315,66 @@ document.addEventListener("DOMContentLoaded", () => {
         $$(".reveal");
 
 
-    if ("IntersectionObserver" in window) {
+    if (
+        "IntersectionObserver" in window
+    ) {
 
         const revealObserver =
             new IntersectionObserver(
                 (entries, observer) => {
 
-                    entries.forEach(entry => {
+                    entries.forEach(
+                        entry => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-                            entry.target
-                                .classList
-                                .add("active");
+                                entry.target.classList.add(
+                                    "active"
+                                );
 
-                            observer.unobserve(
-                                entry.target
-                            );
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
 
                         }
-
-                    });
+                    );
 
                 },
                 {
                     threshold: 0.08,
-                    rootMargin: "0px 0px -40px 0px"
+
+                    rootMargin:
+                        "0px 0px -40px 0px"
                 }
             );
 
 
-        revealElements.forEach(element => {
+        revealElements.forEach(
+            element => {
 
-            revealObserver.observe(element);
+                revealObserver.observe(
+                    element
+                );
 
-        });
+            }
+        );
 
     } else {
 
-        revealElements.forEach(element => {
+        revealElements.forEach(
+            element => {
 
-            element.classList.add("active");
+                element.classList.add(
+                    "active"
+                );
 
-        });
+            }
+        );
 
     }
 
@@ -276,6 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sections =
         $$("section[id]");
+
 
     const navAnchors =
         $$(".nav-links a[href^='#']");
@@ -291,51 +401,64 @@ document.addEventListener("DOMContentLoaded", () => {
             new IntersectionObserver(
                 entries => {
 
-                    entries.forEach(entry => {
+                    entries.forEach(
+                        entry => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-                            const id =
-                                entry.target.id;
+                                const id =
+                                    entry.target.id;
 
-                            navAnchors.forEach(
-                                link => {
 
-                                    link.classList
-                                        .remove("active");
+                                navAnchors.forEach(
+                                    link => {
 
-                                    if (
-                                        link.getAttribute(
-                                            "href"
-                                        ) === `#${id}`
-                                    ) {
+                                        link.classList.remove(
+                                            "active"
+                                        );
 
-                                        link.classList
-                                            .add("active");
+
+                                        if (
+                                            link.getAttribute(
+                                                "href"
+                                            ) === `#${id}`
+                                        ) {
+
+                                            link.classList.add(
+                                                "active"
+                                            );
+
+                                        }
 
                                     }
+                                );
 
-                                });
+                            }
 
                         }
-
-                    });
+                    );
 
                 },
                 {
                     threshold: 0.25,
-                    rootMargin: "-100px 0px -50% 0px"
+
+                    rootMargin:
+                        "-100px 0px -50% 0px"
                 }
             );
 
 
-        sections.forEach(section => {
+        sections.forEach(
+            section => {
 
-            sectionObserver.observe(section);
+                sectionObserver.observe(
+                    section
+                );
 
-        });
+            }
+        );
 
     }
 
@@ -347,12 +470,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas =
         $("#bgCanvas");
 
+
     if (canvas) {
 
         const ctx =
             canvas.getContext("2d");
 
+
         let particles = [];
+
         let animationFrame;
 
 
@@ -364,17 +490,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     2
                 );
 
+
             canvas.width =
                 window.innerWidth * dpr;
+
 
             canvas.height =
                 window.innerHeight * dpr;
 
+
             canvas.style.width =
                 window.innerWidth + "px";
 
+
             canvas.style.height =
                 window.innerHeight + "px";
+
 
             ctx.setTransform(
                 dpr,
@@ -385,6 +516,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 0
             );
 
+
             createParticles();
 
         }
@@ -393,6 +525,7 @@ document.addEventListener("DOMContentLoaded", () => {
         function createParticles() {
 
             particles = [];
+
 
             const count =
                 window.innerWidth < 700
@@ -451,60 +584,79 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            particles.forEach(particle => {
+            particles.forEach(
+                particle => {
 
-                particle.x += particle.vx;
-                particle.y += particle.vy;
+                    particle.x +=
+                        particle.vx;
 
 
-                if (
-                    particle.x < -10
-                ) {
-                    particle.x =
-                        window.innerWidth + 10;
+                    particle.y +=
+                        particle.vy;
+
+
+                    if (
+                        particle.x < -10
+                    ) {
+
+                        particle.x =
+                            window.innerWidth + 10;
+
+                    }
+
+
+                    if (
+                        particle.x >
+                        window.innerWidth + 10
+                    ) {
+
+                        particle.x = -10;
+
+                    }
+
+
+                    if (
+                        particle.y < -10
+                    ) {
+
+                        particle.y =
+                            window.innerHeight + 10;
+
+                    }
+
+
+                    if (
+                        particle.y >
+                        window.innerHeight + 10
+                    ) {
+
+                        particle.y = -10;
+
+                    }
+
+
+                    ctx.beginPath();
+
+
+                    ctx.arc(
+                        particle.x,
+                        particle.y,
+                        particle.size,
+                        0,
+                        Math.PI * 2
+                    );
+
+
+                    ctx.fillStyle =
+                        `rgba(80, 220, 210, ${particle.alpha})`;
+
+
+                    ctx.fill();
+
                 }
-
-                if (
-                    particle.x >
-                    window.innerWidth + 10
-                ) {
-                    particle.x = -10;
-                }
-
-                if (
-                    particle.y < -10
-                ) {
-                    particle.y =
-                        window.innerHeight + 10;
-                }
-
-                if (
-                    particle.y >
-                    window.innerHeight + 10
-                ) {
-                    particle.y = -10;
-                }
+            );
 
 
-                ctx.beginPath();
-
-                ctx.arc(
-                    particle.x,
-                    particle.y,
-                    particle.size,
-                    0,
-                    Math.PI * 2
-                );
-
-                ctx.fillStyle =
-                    `rgba(80, 220, 210, ${particle.alpha})`;
-
-                ctx.fill();
-
-            });
-
-
-            // Very subtle connecting lines
             for (
                 let i = 0;
                 i < particles.length;
@@ -520,14 +672,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     const a =
                         particles[i];
 
+
                     const b =
                         particles[j];
+
 
                     const dx =
                         a.x - b.x;
 
+
                     const dy =
                         a.y - b.y;
+
 
                     const distance =
                         Math.sqrt(
@@ -536,28 +692,37 @@ document.addEventListener("DOMContentLoaded", () => {
                         );
 
 
-                    if (distance < 130) {
+                    if (
+                        distance < 130
+                    ) {
 
                         const opacity =
                             (1 - distance / 130) *
                             0.08;
 
+
                         ctx.beginPath();
+
 
                         ctx.moveTo(
                             a.x,
                             a.y
                         );
 
+
                         ctx.lineTo(
                             b.x,
                             b.y
                         );
 
+
                         ctx.strokeStyle =
                             `rgba(80, 220, 210, ${opacity})`;
 
-                        ctx.lineWidth = 1;
+
+                        ctx.lineWidth =
+                            1;
+
 
                         ctx.stroke();
 
@@ -589,6 +754,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     animationFrame
                 );
 
+
                 resizeCanvas();
 
                 animateParticles();
@@ -605,6 +771,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const githubContainer =
         $("#githubContainer");
+
 
     const githubUsername =
         "zerose-code";
@@ -659,7 +826,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const projects =
                 repos
-                    .filter(repo => !repo.fork)
+                    .filter(
+                        repo => !repo.fork
+                    )
                     .slice(0, 6);
 
 
@@ -679,10 +848,12 @@ document.addEventListener("DOMContentLoaded", () => {
                             href="https://github.com/${githubUsername}"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="card-link"
-                        >
+                            class="card-link">
+
                             Visit GitHub
+
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
                         </a>
 
                     </div>
@@ -694,11 +865,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /*
-             * IMPORTANT:
-             * Remove old generated cards first.
-             */
-            githubContainer.innerHTML = "";
+            githubContainer.innerHTML =
+                "";
 
 
             projects.forEach(
@@ -740,8 +908,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="project-github"
-                                aria-label="Open GitHub repository"
-                            >
+                                aria-label="Open GitHub repository">
 
                                 <i class="fa-brands fa-github"></i>
 
@@ -797,8 +964,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             href="${escapeHTML(repo.html_url)}"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="project-view-link"
-                        >
+                            class="project-view-link">
 
                             <span>
                                 View Project
@@ -816,7 +982,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                    // Small stagger animation
                     setTimeout(
                         () => {
 
@@ -855,8 +1020,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         href="https://github.com/${githubUsername}"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="card-link"
-                    >
+                        class="card-link">
 
                         Visit GitHub
 
@@ -883,28 +1047,66 @@ document.addEventListener("DOMContentLoaded", () => {
     const aiLauncher =
         $(".ai-chat-launcher");
 
+
     const aiWindow =
         $(".ai-chat-window");
+
 
     const closeChat =
         $(".close-chat");
 
+
+    /*
+     * IMPORTANT FIX:
+     *
+     * The old code selected ".ai-chat-input",
+     * but that class belongs to the wrapper div.
+     *
+     * The actual input is #chatInput.
+     */
+
     const aiInput =
-        $(".ai-chat-input");
+        document.getElementById(
+            "chatInput"
+        );
+
+
+    /*
+     * IMPORTANT FIX:
+     *
+     * The actual send button is #sendChatBtn.
+     */
+
+    const aiSendButton =
+        document.getElementById(
+            "sendChatBtn"
+        );
+
+
+    const chatMessages =
+        document.getElementById(
+            "chatMessages"
+        );
 
 
     function openAIChat() {
 
         if (!aiWindow) return;
 
+
         aiWindow.classList.add(
             "active"
         );
 
+
         if (aiInput) {
 
             setTimeout(
-                () => aiInput.focus(),
+                () => {
+
+                    aiInput.focus();
+
+                },
                 200
             );
 
@@ -916,6 +1118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeAIChat() {
 
         if (!aiWindow) return;
+
 
         aiWindow.classList.remove(
             "active"
@@ -931,6 +1134,25 @@ document.addEventListener("DOMContentLoaded", () => {
             openAIChat
         );
 
+
+        aiLauncher.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    openAIChat();
+
+                }
+
+            }
+        );
+
     }
 
 
@@ -944,7 +1166,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // Close chat by clicking outside
+    /* =====================================================
+       CLOSE CHAT OUTSIDE
+       ===================================================== */
+
     document.addEventListener(
         "click",
         event => {
@@ -953,7 +1178,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 !aiWindow ||
                 !aiLauncher
             ) {
+
                 return;
+
             }
 
 
@@ -980,10 +1207,6 @@ document.addEventListener("DOMContentLoaded", () => {
     /* =====================================================
        AI CHAT MESSAGE SYSTEM
        ===================================================== */
-
-    const chatMessages =
-        $(".ai-chat-messages");
-
 
     function addChatMessage(
         message,
@@ -1020,7 +1243,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showTyping() {
 
-        if (!chatMessages) return;
+        if (!chatMessages) {
+            return null;
+        }
 
 
         const typing =
@@ -1036,9 +1261,11 @@ document.addEventListener("DOMContentLoaded", () => {
         typing.innerHTML = `
 
             <p>
+
                 <span>•</span>
                 <span>•</span>
                 <span>•</span>
+
             </p>
 
         `;
@@ -1058,6 +1285,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* =====================================================
+       SEND AI MESSAGE
+       ===================================================== */
+
     async function sendAIMessage() {
 
         if (!aiInput) return;
@@ -1070,14 +1301,44 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!message) return;
 
 
+        /*
+         * Show user message
+         */
+
         addChatMessage(
             message,
             "user"
         );
 
 
-        aiInput.value = "";
+        /*
+         * Clear input
+         */
 
+        aiInput.value =
+            "";
+
+
+        /*
+         * Disable input/button
+         * while request is running.
+         */
+
+        aiInput.disabled =
+            true;
+
+
+        if (aiSendButton) {
+
+            aiSendButton.disabled =
+                true;
+
+        }
+
+
+        /*
+         * Show typing
+         */
 
         const typing =
             showTyping();
@@ -1104,18 +1365,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
 
+            let data = {};
+
+
+            try {
+
+                data =
+                    await response.json();
+
+            } catch {
+
+                data = {};
+
+            }
+
+
             if (!response.ok) {
 
                 throw new Error(
+                    data.reply ||
+                    data.error ||
                     "AI request failed"
                 );
 
             }
 
 
-            const data =
-                await response.json();
-
+            /*
+             * Remove typing indicator
+             */
 
             if (typing) {
 
@@ -1156,12 +1434,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 "bot"
             );
 
+        } finally {
+
+            /*
+             * Enable input/button again
+             */
+
+            aiInput.disabled =
+                false;
+
+
+            if (aiSendButton) {
+
+                aiSendButton.disabled =
+                    false;
+
+            }
+
+
+            aiInput.focus();
+
         }
 
     }
 
 
-    // Enter key
+    /* =====================================================
+       AI CHAT — ENTER KEY
+       ===================================================== */
+
     if (aiInput) {
 
         aiInput.addEventListener(
@@ -1185,14 +1486,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // Find send button
-    const aiSendButton =
-        aiWindow
-            ? aiWindow.querySelector(
-                "button[type='submit'], .ai-send, .send-btn"
-            )
-            : null;
-
+    /* =====================================================
+       AI CHAT — SEND BUTTON
+       ===================================================== */
 
     if (aiSendButton) {
 
@@ -1210,7 +1506,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // Handle chat form if available
+    /* =====================================================
+       AI CHAT — OPTIONAL FORM SUPPORT
+       ===================================================== */
+
     const aiForm =
         aiWindow
             ? aiWindow.querySelector(
@@ -1275,6 +1574,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     submitButton.disabled =
                         true;
 
+
                     submitButton.innerHTML = `
 
                         <i class="fa-solid fa-spinner fa-spin"></i>
@@ -1290,6 +1590,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     status.textContent =
                         "";
+
 
                     status.className =
                         "form-status";
@@ -1330,17 +1631,30 @@ document.addEventListener("DOMContentLoaded", () => {
                         );
 
 
-                    if (!response.ok) {
+                    let result = {};
 
-                        throw new Error(
-                            "Contact request failed"
-                        );
+
+                    try {
+
+                        result =
+                            await response.json();
+
+                    } catch {
+
+                        result = {};
 
                     }
 
 
-                    const result =
-                        await response.json();
+                    if (!response.ok) {
+
+                        throw new Error(
+                            result.message ||
+                            result.error ||
+                            "Contact request failed"
+                        );
+
+                    }
 
 
                     if (status) {
@@ -1348,6 +1662,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         status.textContent =
                             result.message ||
                             "Your message has been sent successfully.";
+
 
                         status.classList.add(
                             "success"
@@ -1372,6 +1687,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         status.textContent =
                             "Something went wrong. Please try again.";
 
+
                         status.classList.add(
                             "error"
                         );
@@ -1384,6 +1700,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         submitButton.disabled =
                             false;
+
 
                         submitButton.innerHTML =
                             originalText;
@@ -1409,13 +1726,18 @@ document.addEventListener("DOMContentLoaded", () => {
     function openModal(id) {
 
         const modal =
-            document.getElementById(id);
+            document.getElementById(
+                id
+            );
+
 
         if (!modal) return;
+
 
         modal.classList.add(
             "active"
         );
+
 
         document.body.classList.add(
             "modal-open"
@@ -1428,9 +1750,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!modal) return;
 
+
         modal.classList.remove(
             "active"
         );
+
 
         document.body.classList.remove(
             "modal-open"
@@ -1439,81 +1763,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // Privacy links
+    /* =====================================================
+       PRIVACY POLICY
+       ===================================================== */
+
     $$(
-        'a[href="#privacy"], [data-modal="privacy"]'
-    ).forEach(link => {
+        '#privacyBtn, a[href="#privacy"], [data-modal="privacy"]'
+    ).forEach(
+        link => {
 
-        link.addEventListener(
-            "click",
-            event => {
+            link.addEventListener(
+                "click",
+                event => {
 
-                event.preventDefault();
+                    event.preventDefault();
 
-                const modal =
-                    modalOverlays.find(
-                        item =>
-                            item.id
-                                .toLowerCase()
-                                .includes("privacy")
-                    );
-
-                if (modal) {
-
-                    modal.classList.add(
-                        "active"
-                    );
-
-                    document.body.classList.add(
-                        "modal-open"
+                    openModal(
+                        "privacyModal"
                     );
 
                 }
+            );
 
-            }
-        );
-
-    });
+        }
+    );
 
 
-    // Terms links
+    /* =====================================================
+       TERMS OF SERVICE
+       ===================================================== */
+
     $$(
-        'a[href="#terms"], [data-modal="terms"]'
-    ).forEach(link => {
+        '#termsBtn, a[href="#terms"], [data-modal="terms"]'
+    ).forEach(
+        link => {
 
-        link.addEventListener(
-            "click",
-            event => {
+            link.addEventListener(
+                "click",
+                event => {
 
-                event.preventDefault();
+                    event.preventDefault();
 
-                const modal =
-                    modalOverlays.find(
-                        item =>
-                            item.id
-                                .toLowerCase()
-                                .includes("terms")
-                    );
-
-                if (modal) {
-
-                    modal.classList.add(
-                        "active"
-                    );
-
-                    document.body.classList.add(
-                        "modal-open"
+                    openModal(
+                        "termsModal"
                     );
 
                 }
+            );
 
-            }
-        );
-
-    });
+        }
+    );
 
 
-    // Modal close buttons
+    /* =====================================================
+       MODAL CLOSE BUTTONS
+       ===================================================== */
+
     $$(".modal-close").forEach(
         button => {
 
@@ -1534,7 +1839,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    // Click outside modal
+    /* =====================================================
+       CLICK OUTSIDE MODAL
+       ===================================================== */
+
     modalOverlays.forEach(
         modal => {
 
@@ -1559,7 +1867,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    // Escape key
+    /* =====================================================
+       ESCAPE KEY
+       ===================================================== */
+
     document.addEventListener(
         "keydown",
         event => {
@@ -1615,6 +1926,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ripple.style.left =
                         `${event.clientX - rect.left}px`;
 
+
                     ripple.style.top =
                         `${event.clientY - rect.top}px`;
 
@@ -1644,8 +1956,10 @@ document.addEventListener("DOMContentLoaded", () => {
        CARD MOUSE GLOW
        ===================================================== */
 
-    $$(".glass-card, .problem-card, .solution-card, .industry-card, .security-card")
-        .forEach(card => {
+    $$(
+        ".glass-card, .problem-card, .solution-card, .industry-card, .security-card"
+    ).forEach(
+        card => {
 
             card.addEventListener(
                 "mousemove",
@@ -1670,6 +1984,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         `${x}px`
                     );
 
+
                     card.style.setProperty(
                         "--mouse-y",
                         `${y}px`
@@ -1687,6 +2002,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         "--mouse-x"
                     );
 
+
                     card.style.removeProperty(
                         "--mouse-y"
                     );
@@ -1694,7 +2010,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             );
 
-        });
+        }
+    );
 
 
     /* =====================================================
@@ -1715,9 +2032,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // Also support #year
     const footerYear =
         $("#year");
+
 
     if (footerYear) {
 
@@ -1753,21 +2070,18 @@ document.addEventListener("DOMContentLoaded", () => {
         "visibilitychange",
         () => {
 
-            // Canvas animation automatically continues,
-            // but reducing unnecessary work when hidden
-            // can help slower devices.
-
-            if (
-                document.hidden
-            ) {
-
-                // Nothing required here.
-
-            }
+            /*
+             * Nothing required here.
+             * Kept for future performance controls.
+             */
 
         }
     );
 
+
+    /* =====================================================
+       INITIALIZED
+       ===================================================== */
 
     console.log(
         "%cZEROSE%c — Website initialized successfully.",
