@@ -1,17 +1,19 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+export default async function handler(req, res) {
+  // Allow CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static('public'));
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-app.post('/api/chat', async (req, res) => {
   try {
-    const { message } = req.body;
+    const { message } = req.body || {};
 
     if (!message) {
       return res.status(400).json({ error: 'Message is required' });
@@ -43,15 +45,11 @@ app.post('/api/chat', async (req, res) => {
     }
 
     const reply = data.choices?.[0]?.message?.content || 'No response from AI.';
-    res.json({ reply });
+    return res.status(200).json({ reply });
 
   } catch (error) {
     console.error('Server Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+}
 
