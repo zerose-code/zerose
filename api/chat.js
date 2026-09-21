@@ -28,7 +28,7 @@ export default async function handler(req, res) {
             {
               role: "system",
               content:
-                "You are ZEROSE AI Consultant. Help businesses with digital transformation, websites, software, apps, branding, marketing, automation and growth strategies. Give practical, professional and concise answers.",
+                "You are ZEROSE AI, an expert business consultant. Keep responses concise, direct, professional, and well-structured. Avoid outputting complex Markdown tables: use short bullet points instead.",
             },
             {
               role: "user",
