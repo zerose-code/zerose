@@ -1100,3 +1100,243 @@ if (xrayButton) {
 
     });
 }
+
+(function () {
+  // 1. Create Container
+  const hostDiv = document.createElement('div');
+  hostDiv.id = 'zerose-chat-root';
+  document.body.appendChild(hostDiv);
+
+  // 2. Attach Shadow DOM (Complete CSS Isolation)
+  const shadow = hostDiv.attachShadow({ mode: 'open' });
+
+  // 3. HTML & Encapsulated CSS Structure
+  shadow.innerHTML = `
+    <style>
+      :host {
+        all: initial;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      .zc-widget {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 99999999;
+      }
+      .zc-btn {
+        background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+        color: #ffffff;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 22px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(0, 198, 255, 0.35);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .zc-box {
+        display: none;
+        width: 360px;
+        height: 500px;
+        background: #0f1219;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        position: absolute;
+        bottom: 60px;
+        right: 0;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .zc-box.active {
+        display: flex !important;
+      }
+      .zc-header {
+        background: #161b26;
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        flex-shrink: 0;
+      }
+      .zc-title {
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .zc-status {
+        font-size: 11px;
+        color: #00c6ff;
+        display: block;
+      }
+      .zc-close-btn {
+        background: transparent;
+        border: none;
+        color: #888888;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .zc-messages {
+        flex: 1;
+        padding: 16px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .zc-msg {
+        max-width: 82%;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-size: 13px;
+        line-height: 1.4;
+        word-break: break-word;
+      }
+      .zc-msg-user {
+        align-self: flex-end;
+        background: #00c6ff;
+        color: #000000;
+        font-weight: 500;
+        border-bottom-right-radius: 2px;
+      }
+      .zc-msg-ai {
+        align-self: flex-start;
+        background: rgba(255, 255, 255, 0.08);
+        color: #e2e8f0;
+        border-top-left-radius: 2px;
+      }
+      .zc-input-area {
+        padding: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: #121620;
+        display: flex;
+        gap: 8px;
+        height: 60px;
+        flex-shrink: 0;
+        align-items: center;
+      }
+      .zc-input {
+        flex: 1;
+        background: #090b10;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        padding: 8px 12px;
+        color: #ffffff;
+        font-size: 13px;
+        outline: none;
+        height: 38px;
+      }
+      .zc-send-btn {
+        background: #00c6ff;
+        color: #000000;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-weight: 600;
+        cursor: pointer;
+        height: 38px;
+      }
+      @media screen and (max-width: 480px) {
+        .zc-box {
+          position: fixed;
+          top: 0; left: 0; right: 0; bottom: 0;
+          width: 100vw; height: 100vh;
+          border-radius: 0;
+        }
+      }
+    </style>
+
+    <div class="zc-widget">
+      <button class="zc-btn" id="toggle-btn">💬 ZEROSE AI</button>
+      <div class="zc-box" id="chat-box">
+        <div class="zc-header">
+          <div>
+            <div class="zc-title">ZEROSE Consultant</div>
+            <span class="zc-status">● Active Now</span>
+          </div>
+          <button class="zc-close-btn" id="close-btn">✕</button>
+        </div>
+        <div class="zc-messages" id="chat-messages">
+          <div class="zc-msg zc-msg-ai">Hello! 👋 Welcome to ZEROSE. How can I help you today?</div>
+        </div>
+        <div class="zc-input-area">
+          <input type="text" class="zc-input" id="chat-input" placeholder="Type your message...">
+          <button class="zc-send-btn" id="send-btn">Send</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // 4. Logic Implementation
+  const chatBox = shadow.getElementById('chat-box');
+  const toggleBtn = shadow.getElementById('toggle-btn');
+  const closeBtn = shadow.getElementById('close-btn');
+  const chatInput = shadow.getElementById('chat-input');
+  const sendBtn = shadow.getElementById('send-btn');
+  const chatMessages = shadow.getElementById('chat-messages');
+
+  const toggleChat = () => chatBox.classList.toggle('active');
+  toggleBtn.addEventListener('click', toggleChat);
+  closeBtn.addEventListener('click', toggleChat);
+
+  const sendMessage = async () => {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    // User Message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'zc-msg zc-msg-user';
+    userMsg.innerText = text;
+    chatMessages.appendChild(userMsg);
+
+    chatInput.value = '';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Loading State
+    const loadingMsg = document.createElement('div');
+    loadingMsg.className = 'zc-msg zc-msg-ai';
+    loadingMsg.innerText = 'Thinking...';
+    chatMessages.appendChild(loadingMsg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
+      const data = await response.json();
+      chatMessages.removeChild(loadingMsg);
+
+      const aiMsg = document.createElement('div');
+      aiMsg.className = 'zc-msg zc-msg-ai';
+      aiMsg.innerText = data.reply || data.error || 'Something went wrong.';
+      chatMessages.appendChild(aiMsg);
+    } catch (err) {
+      if (chatMessages.contains(loadingMsg)) chatMessages.removeChild(loadingMsg);
+      const errorMsg = document.createElement('div');
+      errorMsg.className = 'zc-msg zc-msg-ai';
+      errorMsg.style.color = '#ff6b6b';
+      errorMsg.innerText = 'Failed to connect to AI server.';
+      chatMessages.appendChild(errorMsg);
+    }
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  };
+
+  sendBtn.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+})();
+

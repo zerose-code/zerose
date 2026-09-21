@@ -2038,7 +2038,7 @@
 
                     <a href="https://www.instagram.com/zerosecompany?stkn=c3VvcnhnYm1wdzdn" target="_blank" rel="noopener noreferrer" aria-label="ZEROSE on Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://www.facebook.com/share/19LFwJpP5Q/" target="_blank" rel="noopener noreferrer" aria-label="ZEROSE on Facebook"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://www.linkedin.com/company/zeroseofficial" target="_blank" rel="noopener noreferrer" aria-label="ZEROSE on Linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/matifzerose" target="_blank" rel="noopener noreferrer" aria-label="ZEROSE on Linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
                     <a href="https://wa.me/923147460480" target="_blank" rel="noopener noreferrer" aria-label="ZEROSE on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
                 </div>
@@ -2065,6 +2065,35 @@
             </div>
 
     </footer>
+
+    <!-- ZEROSE A Widget -->
+    <div id="zerose-chat-widget">
+        <button id="zerose-chat-btn" onclick="toggleZeroseChat()">
+            💬 ZEROSE AI
+        </button>
+
+        <duv id="zerose-chat-box">
+            <!--Header -->
+            <div class="zc-header">
+                <div class="zc-title-group">
+                    <h4 class="zc-title">ZEROSE Consultant</h4>
+                    <span class="zc-status">● Active Now</span>
+                </div>
+            
+            <!-- Message Body -->
+            <div id="zerose-chat-message">
+                <div class="zc-msg zc-msg-ai">
+                    Hello! 👋 Welcome to ZEROSE. How can I help you today?
+                </div>
+            </div>
+
+            <!-- Input Footer -->
+            <div class="zc-input-area">
+                <input type="text" id="zerose-user-input" placeholder="Type your message..." onkeypress="handleZeroseKeyPress(event)">
+                <button id="zerose-send-btn" onclick="sendZeroseMessage()">Send</button>
+            </div>
+        </div>
+    </div>
 
     </main>
 
