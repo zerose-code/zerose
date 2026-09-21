@@ -1101,7 +1101,7 @@ if (xrayButton) {
     });
 }
 
-(function () {
+ (function () {
   // 1. Create Container
   const hostDiv = document.createElement('div');
   hostDiv.id = 'zerose-chat-root';
@@ -1110,7 +1110,7 @@ if (xrayButton) {
   // 2. Attach Shadow DOM (Complete CSS Isolation)
   const shadow = hostDiv.attachShadow({ mode: 'open' });
 
-  // 3. Helper: Simple Markdown Parser for clean responses
+  // 3. Helper: Simple Markdown Parser
   function formatMarkdown(text) {
     if (!text) return '';
     return text
@@ -1126,7 +1126,7 @@ if (xrayButton) {
       .replace(/\n/g, '<br>');
   }
 
-  // 4. HTML & Encapsulated CSS Structure
+  // 4. HTML & Responsive CSS Structure
   shadow.innerHTML = `
     <style>
       :host {
@@ -1162,6 +1162,7 @@ if (xrayButton) {
         display: none;
         width: 360px;
         height: 500px;
+        max-height: 80vh;
         background: #0f1219;
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 16px;
@@ -1201,6 +1202,7 @@ if (xrayButton) {
         color: #888888;
         font-size: 18px;
         cursor: pointer;
+        padding: 4px 8px;
       }
       .zc-messages {
         flex: 1;
@@ -1237,7 +1239,7 @@ if (xrayButton) {
         background: #121620;
         display: flex;
         gap: 8px;
-        height: 60px;
+        height: 64px;
         flex-shrink: 0;
         align-items: center;
       }
@@ -1248,9 +1250,9 @@ if (xrayButton) {
         border-radius: 8px;
         padding: 8px 12px;
         color: #ffffff;
-        font-size: 13px;
+        font-size: 14px;
         outline: none;
-        height: 38px;
+        height: 40px;
       }
       .zc-send-btn {
         background: #00c6ff;
@@ -1260,14 +1262,35 @@ if (xrayButton) {
         padding: 8px 16px;
         font-weight: 600;
         cursor: pointer;
-        height: 38px;
+        height: 40px;
       }
+      /* MOBILE RESPONSIVE FIX */
       @media screen and (max-width: 480px) {
-        .zc-box {
+        .zc-widget {
+          bottom: 0;
+          right: 0;
+          left: 0;
+          top: 0;
+          pointer-events: none;
+        }
+        .zc-btn {
+          pointer-events: auto;
           position: fixed;
-          top: 0; left: 0; right: 0; bottom: 0;
-          width: 100vw; height: 100vh;
+          bottom: 20px;
+          right: 20px;
+        }
+        .zc-box {
+          pointer-events: auto;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100vw;
+          height: 100dvh; /* Handles mobile browser bars */
+          max-height: 100dvh;
           border-radius: 0;
+          border: none;
         }
       }
     </style>
@@ -1326,19 +1349,24 @@ if (xrayButton) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     try {
-      const response = await fetch('/api/chat', {
+      // Dynamic origin URL to prevent API routing issues on Vercel
+      const apiUrl = window.location.origin + '/api/chat';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text })
       });
+
       const data = await response.json();
       chatMessages.removeChild(loadingMsg);
 
+      if (!response.ok) {
+        throw new Error(data.error || 'Server returned an error');
+      }
+
       const aiMsg = document.createElement('div');
       aiMsg.className = 'zc-msg zc-msg-ai';
-      
-      // FIX: Render clean formatted HTML for AI reply
-      const rawReply = data.reply || data.error || 'Something went wrong.';
+      const rawReply = data.reply || 'No response received.';
       aiMsg.innerHTML = formatMarkdown(rawReply);
       chatMessages.appendChild(aiMsg);
 
@@ -1349,6 +1377,7 @@ if (xrayButton) {
       errorMsg.style.color = '#ff6b6b';
       errorMsg.innerText = 'Failed to connect to AI server.';
       chatMessages.appendChild(errorMsg);
+      console.error('Chatbot Error:', err);
     }
 
     chatMessages.scrollTop = chatMessages.scrollHeight;
