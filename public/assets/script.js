@@ -1110,7 +1110,23 @@ if (xrayButton) {
   // 2. Attach Shadow DOM (Complete CSS Isolation)
   const shadow = hostDiv.attachShadow({ mode: 'open' });
 
-  // 3. HTML & Encapsulated CSS Structure
+  // 3. Helper: Simple Markdown Parser for clean responses
+  function formatMarkdown(text) {
+    if (!text) return '';
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/^### (.*$)/gim, '<strong style="display:block; margin-top:6px;">$1</strong>')
+      .replace(/^## (.*$)/gim, '<strong style="display:block; font-size:14px; margin-top:8px;">$1</strong>')
+      .replace(/^\* (.*$)/gim, '• $1')
+      .replace(/^- (.*$)/gim, '• $1')
+      .replace(/\n/g, '<br>');
+  }
+
+  // 4. HTML & Encapsulated CSS Structure
   shadow.innerHTML = `
     <style>
       :host {
@@ -1195,11 +1211,11 @@ if (xrayButton) {
         gap: 12px;
       }
       .zc-msg {
-        max-width: 82%;
+        max-width: 85%;
         padding: 10px 14px;
         border-radius: 12px;
         font-size: 13px;
-        line-height: 1.4;
+        line-height: 1.5;
         word-break: break-word;
       }
       .zc-msg-user {
@@ -1277,7 +1293,7 @@ if (xrayButton) {
     </div>
   `;
 
-  // 4. Logic Implementation
+  // 5. Logic Implementation
   const chatBox = shadow.getElementById('chat-box');
   const toggleBtn = shadow.getElementById('toggle-btn');
   const closeBtn = shadow.getElementById('close-btn');
@@ -1320,8 +1336,12 @@ if (xrayButton) {
 
       const aiMsg = document.createElement('div');
       aiMsg.className = 'zc-msg zc-msg-ai';
-      aiMsg.innerText = data.reply || data.error || 'Something went wrong.';
+      
+      // FIX: Render clean formatted HTML for AI reply
+      const rawReply = data.reply || data.error || 'Something went wrong.';
+      aiMsg.innerHTML = formatMarkdown(rawReply);
       chatMessages.appendChild(aiMsg);
+
     } catch (err) {
       if (chatMessages.contains(loadingMsg)) chatMessages.removeChild(loadingMsg);
       const errorMsg = document.createElement('div');
