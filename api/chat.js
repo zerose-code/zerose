@@ -6,7 +6,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { message, history = [] } = req.body || {};
+    const { 
+      message, 
+      history = [],
+      xrayContext = null
+    } = req.body || {};
 
     if (!message || typeof message !== "string") {
       return res.status(400).json({
@@ -151,6 +155,47 @@ Always prioritize:
 RELEVANCE > BREVITY > CLARITY.
 `,
             },
+
+            ...(xrayContext
+    ? [{
+        role: "system",
+        content: `
+BUSINESS X-RAY CONTEXT:
+
+The visitor has completed the ZEROSE Business X-Ray.
+
+Business Type: ${xrayContext.businessType}
+Business Stage: ${xrayContext.businessStage}
+Main Problem: ${xrayContext.businessProblem}
+Digital Presence: ${xrayContext.digitalPresence}
+Main Goal: ${xrayContext.businessGoal}
+
+Overall X-Ray Score: ${xrayContext.overallScore}/100
+Strongest Area: ${xrayContext.strongestArea}
+Weakest Area: ${xrayContext.weakestArea}
+Priority: ${xrayContext.priorityLevel}
+
+Diagnosis:
+${xrayContext.diagnosis}
+
+Main Opportunity:
+${xrayContext.opportunity}
+
+Recommended Solution:
+${xrayContext.recommendedSolution}
+
+Where To Start:
+${xrayContext.whereToStart}
+
+Use this X-Ray information as context for the conversation.
+
+Do not ask the user for information that is already available here.
+Do not repeat the entire X-Ray report.
+Use the context naturally when recommending ZEROSE solutions.
+`
+    }]
+    : []),
+            
             ...history,
             {
               role: "user",
