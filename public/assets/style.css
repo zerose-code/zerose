@@ -3811,3 +3811,110 @@ button {
   }
 }
 
+/* ==========================================
+   ZEROSE MOBILE SAFETY PATCH
+   ========================================== */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+
+    .nav-container {
+        width: 100%;
+    }
+
+    .hero,
+    .solutions-section,
+    .problems-section,
+    .industries-section,
+    .process-section,
+    .work-section,
+    .about-section,
+    .contact-section,
+    .xray-section {
+        max-width: 100%;
+    }
+
+    .hero h1,
+    .section-heading h2,
+    .problems-intro h2,
+    .industries-intro h2,
+    .process-intro h2,
+    .work-intro h2,
+    .about-header h2,
+    .contact-header h2,
+    .xray-header h2 {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+
+    .solution-card,
+    .problem-card,
+    .industry-card,
+    .work-card,
+    .about-card,
+    .contact-info,
+    .contact-form,
+    .xray-tool,
+    .xray-result {
+        max-width: 100%;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        max-width: 100%;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .hero {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .solutions-section,
+    .problems-section,
+    .industries-section,
+    .process-section,
+    .work-section,
+    .xray-section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .about-section,
+    .contact-section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .hero h1 {
+        font-size: clamp(38px, 12vw, 54px);
+    }
+
+    .section-heading h2,
+    .problems-intro h2,
+    .industries-intro h2,
+    .process-intro h2,
+    .work-intro h2,
+    .about-header h2,
+    .contact-header h2,
+    .xray-header h2 {
+        font-size: clamp(34px, 10vw, 44px);
+    }
+
+}
