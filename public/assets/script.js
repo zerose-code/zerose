@@ -1033,6 +1033,28 @@ if (xrayButton) {
                 priorityLevel;
         }
 
+        // Save Business X-Ray Context for ZEROSE Consultant
+        sessionStorage.setItem(
+            "zeroseXrayContext",
+            JSON.stringify({
+                businessType,
+                businessStage,
+                businessProblem,
+                digitalPresence,
+                businessGoal,
+                overallScore,
+                strongestArea:
+            scoreNames[strongestArea],
+                weakestArea:
+            scoreNames[weakestArea],
+                priorityLevel,
+                diagnosis,
+                opportunity:
+            mainOpportunity,
+                recommendedSolution,
+                whereToStart
+            })
+        );
 
         /* ---------------------------------
            33. SHOW RESULT
@@ -1328,60 +1350,93 @@ if (xrayButton) {
   toggleBtn.addEventListener('click', toggleChat);
   closeBtn.addEventListener('click', toggleChat);
 
-  const sendMessage = async () => {
-    const text = chatInput.value.trim();
-    if (!text) return;
+ const sendMessage = async () => {
+  const text = chatInput.value.trim();
+  if (!text) return;
 
-    // User Message
-    const userMsg = document.createElement('div');
-    userMsg.className = 'zc-msg zc-msg-user';
-    userMsg.innerText = text;
-    chatMessages.appendChild(userMsg);
+  // User Message
+  const userMsg = document.createElement('div');
+  userMsg.className = 'zc-msg zc-msg-user';
+  userMsg.innerText = text;
+  chatMessages.appendChild(userMsg);
 
-    chatInput.value = '';
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+  chatInput.value = '';
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    // Loading State
-    const loadingMsg = document.createElement('div');
-    loadingMsg.className = 'zc-msg zc-msg-ai';
-    loadingMsg.innerText = 'Thinking...';
-    chatMessages.appendChild(loadingMsg);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+  // Loading State
+  const loadingMsg = document.createElement('div');
+  loadingMsg.className = 'zc-msg zc-msg-ai';
+  loadingMsg.innerText = 'Thinking...';
+  chatMessages.appendChild(loadingMsg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    try {
-      // Dynamic origin URL to prevent API routing issues on Vercel
-      const apiUrl = window.location.origin + '/api/chat';
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text })
-      });
+  try {
+    const apiUrl = window.location.origin + '/api/chat';
 
-      const data = await response.json();
+    // Get previous conversation from the chatbot
+    const history = Array.from(
+      chatMessages.querySelectorAll('.zc-msg')
+    )
+      .slice(-11, -1)
+      .map((msg) => ({
+        role: msg.classList.contains('zc-msg-user')
+          ? 'user'
+          : 'assistant',
+        content: msg.innerText
+      }));
+    const xrayContext =
+
+    sessionStorage.getItem("zeroseXrayContext");
+      
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: text,
+        history: history,
+        xrayContext: xrayContext
+              ?
+    JSON.parse(xrayContext)
+            : null
+      })
+    });
+
+    const data = await response.json();
+
+    if (chatMessages.contains(loadingMsg)) {
       chatMessages.removeChild(loadingMsg);
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Server returned an error');
-      }
-
-      const aiMsg = document.createElement('div');
-      aiMsg.className = 'zc-msg zc-msg-ai';
-      const rawReply = data.reply || 'No response received.';
-      aiMsg.innerHTML = formatMarkdown(rawReply);
-      chatMessages.appendChild(aiMsg);
-
-    } catch (err) {
-      if (chatMessages.contains(loadingMsg)) chatMessages.removeChild(loadingMsg);
-      const errorMsg = document.createElement('div');
-      errorMsg.className = 'zc-msg zc-msg-ai';
-      errorMsg.style.color = '#ff6b6b';
-      errorMsg.innerText = 'Failed to connect to AI server.';
-      chatMessages.appendChild(errorMsg);
-      console.error('Chatbot Error:', err);
     }
 
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  };
+    if (!response.ok) {
+      throw new Error(data.error || 'Server returned an error');
+    }
+
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'zc-msg zc-msg-ai';
+
+    const rawReply = data.reply || 'No response received.';
+
+    aiMsg.innerHTML = formatMarkdown(rawReply);
+    chatMessages.appendChild(aiMsg);
+
+  } catch (err) {
+    if (chatMessages.contains(loadingMsg)) {
+      chatMessages.removeChild(loadingMsg);
+    }
+
+    const errorMsg = document.createElement('div');
+    errorMsg.className = 'zc-msg zc-msg-ai';
+    errorMsg.style.color = '#ff6b6b';
+    errorMsg.innerText = 'Failed to connect to AI server.';
+    chatMessages.appendChild(errorMsg);
+
+    console.error('Chatbot Error:', err);
+  }
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+};
 
   sendBtn.addEventListener('click', sendMessage);
   chatInput.addEventListener('keypress', (e) => {

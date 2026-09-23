@@ -1,5 +1,9 @@
 {
+  "name": "zerose",
+  "version": "1.0.0",
+  "type": "module",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "groq-sdk": "^0.9.0"
   }
 }
