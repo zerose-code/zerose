@@ -1033,6 +1033,28 @@ if (xrayButton) {
                 priorityLevel;
         }
 
+        // Save Business X-Ray Context for ZEROSE Consultant
+        sessionStorage.setItem(
+            "zeroseXrayContext",
+            JSON.stringify({
+                businessType,
+                businessStage,
+                businessProblem,
+                digitalPresence,
+                businessGoal,
+                overallScore,
+                strongestArea:
+            scoreNames[strongestArea],
+                weakestArea:
+            scoreNames[weakestArea],
+                priorityLevel,
+                diagnosis,
+                opportunity:
+            mainOpportunity,
+                recommendedSolution,
+                whereToStart
+            })
+        );
 
         /* ---------------------------------
            33. SHOW RESULT
@@ -1362,7 +1384,10 @@ if (xrayButton) {
           : 'assistant',
         content: msg.innerText
       }));
+    const xrayContext =
 
+    sessionStorage.getItem("zeroseXrayContext");
+      
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -1370,7 +1395,11 @@ if (xrayButton) {
       },
       body: JSON.stringify({
         message: text,
-        history: history
+        history: history,
+        xrayContext: xrayContext
+              ?
+    JSON.parse(xrayContext)
+            : null
       })
     });
 
