@@ -69,7 +69,7 @@ if (contactForm) {
         try {
 
             await fetch(
-                "https://script.google.com/macros/s/AKfycbx67WUKhLljg6XiQzMsc3ZMAUHILDlhAqy64tsG-0klM1WPQ25o51RXCLOUFTHEr2Oy/exec",
+                    "https://script.google.com/macros/s/AKfycbx67WUKhLljg6XiQzMsc3ZMAUHILDlhAqy64tsG-0klM1WPQ25o51RXCLOUFTHEr2Oy/exec",
                 {
                     method: "POST",
                     mode: "no-cors",
