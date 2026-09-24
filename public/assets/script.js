@@ -40,7 +40,11 @@ if (menuButton && navLinks) {
 const contactForm = document.querySelector(".contact-form");
 
 if (contactForm) {
-    contactForm.addEventListener("submit", () => {
+
+    contactForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
         const submitButton =
             contactForm.querySelector(".contact-submit");
 
@@ -49,7 +53,26 @@ if (contactForm) {
             submitButton.innerHTML = "Sending...";
         }
 
-        setTimeout(() => {
+        const formData = new FormData(contactForm);
+
+        const data = new URLSearchParams();
+
+        for (const [key, value] of formData.entries()) {
+            data.append(key, value);
+        }
+
+        try {
+
+            await fetch(contactForm.action, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded;charset=UTF-8"
+                },
+                body: data.toString()
+            });
+
             contactForm.reset();
 
             if (submitButton) {
@@ -57,16 +80,33 @@ if (contactForm) {
             }
 
             setTimeout(() => {
+
                 if (submitButton) {
-                    submitButton.innerHTML = "Let's Build It <span>↗</span>";
+                    submitButton.innerHTML =
+                        "Let's Build It <span>↗</span>";
+
                     submitButton.disabled = false;
                 }
+
             }, 2500);
 
-        }, 800);
-    });
-}
+        } catch (error) {
 
+            console.error(
+                "ZEROSE Contact Form Error:",
+                error
+            );
+
+            if (submitButton) {
+                submitButton.innerHTML = "Try Again";
+                submitButton.disabled = false;
+            }
+
+        }
+
+    });
+
+}
 /* =========================
    BUSINESS X-RAY
    ZEROSE X-RAY ENGINE v3
