@@ -55,57 +55,45 @@ if (contactForm) {
 
         const formData = new FormData(contactForm);
 
-        const leadData = {
-            name: formData.get("name") || "",
-            business: formData.get("business") || "",
-            email: formData.get("email") || "",
-            whatsapp: formData.get("whatsapp") || "",
-            service: formData.get("service") || "",
-            budget: formData.get("budget") || "",
-            contact_method: formData.get("contact_method") || "",
-            message: formData.get("message") || ""
-        };
+        const leadData = new URLSearchParams();
+
+        leadData.append("name", formData.get("name") || "");
+        leadData.append("business", formData.get("business") || "");
+        leadData.append("email", formData.get("email") || "");
+        leadData.append("whatsapp", formData.get("whatsapp") || "");
+        leadData.append("service", formData.get("service") || "");
+        leadData.append("budget", formData.get("budget") || "");
+        leadData.append("contact_method", formData.get("contact_method") || "");
+        leadData.append("message", formData.get("message") || "");
 
         try {
 
-            const response = await fetch(
+            await fetch(
                 "https://script.google.com/macros/s/AKfycbx67WUKhLljg6XiQzMsc3ZMAUHILDlhAqy64tsG-0klM1WPQ25o51RXCLOUFTHEr2Oy/exec",
                 {
                     method: "POST",
-                    body: JSON.stringify(leadData)
+                    mode: "no-cors",
+                    body: leadData
                 }
             );
 
-            const result = await response.json();
+            submitButton.innerHTML = "Message Sent ✓";
 
-            if (result.success) {
+            contactForm.reset();
 
-                submitButton.innerHTML = "Message Sent ✓";
-
-                contactForm.reset();
-
-                setTimeout(() => {
-                    submitButton.innerHTML = originalText;
-                    submitButton.disabled = false;
-                }, 2500);
-
-            } else {
-
-                throw new Error("Lead submission failed");
-
-            }
+            setTimeout(() => {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            }, 2500);
 
         } catch (error) {
 
             console.error("Lead submission error:", error);
 
             submitButton.innerHTML = "Try Again";
-
             submitButton.disabled = false;
 
-            alert(
-                "Message send nahi ho saka. Please try again."
-            );
+            alert("Message send nahi ho saka. Please try again.");
         }
 
     });
