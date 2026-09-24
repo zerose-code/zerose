@@ -34,7 +34,7 @@ if (menuButton && navLinks) {
 }
 
 /* =========================
-   CONTACT FORM
+   CONTACT FORM → GOOGLE SHEETS
 ========================= */
 
 const contactForm = document.querySelector(".contact-form");
@@ -53,25 +53,35 @@ if (contactForm) {
         submitButton.disabled = true;
         submitButton.innerHTML = "Sending...";
 
+        const formData = new FormData(contactForm);
+
+        const leadData = {
+            name: formData.get("name") || "",
+            business: formData.get("business") || "",
+            email: formData.get("email") || "",
+            whatsapp: formData.get("whatsapp") || "",
+            service: formData.get("service") || "",
+            budget: formData.get("budget") || "",
+            contact_method: formData.get("contact_method") || "",
+            message: formData.get("message") || ""
+        };
+
         try {
 
             const response = await fetch(
-                contactForm.action,
+                "https://script.google.com/macros/s/AKfycbx67WUKhLljg6XiQzMsc3ZMAUHILDlhAqy64tsG-0klM1WPQ25o51RXCLOUFTHEr2Oy/exec",
                 {
                     method: "POST",
-                    body: new FormData(contactForm),
-                    headers: {
-                        Accept: "application/json"
-                    }
+                    body: JSON.stringify(leadData)
                 }
             );
 
-            if (response.ok) {
+            const result = await response.json();
+
+            if (result.success) {
 
                 submitButton.innerHTML = "Message Sent ✓";
 
-
-                 
                 contactForm.reset();
 
                 setTimeout(() => {
@@ -81,11 +91,13 @@ if (contactForm) {
 
             } else {
 
-                throw new Error("Form submission failed");
+                throw new Error("Lead submission failed");
 
             }
 
         } catch (error) {
+
+            console.error("Lead submission error:", error);
 
             submitButton.innerHTML = "Try Again";
 
